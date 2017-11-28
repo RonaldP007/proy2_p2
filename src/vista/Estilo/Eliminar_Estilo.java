@@ -5,6 +5,9 @@
  */
 package vista.Estilo;
 
+import codigo.CRUD_Codigo_Eliminar;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Enrique
@@ -31,11 +34,16 @@ public class Eliminar_Estilo extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         btnEliminar = new javax.swing.JButton();
         lblEstilo = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        txt_Estilos = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         lblEstilo.setText("Estilos:");
 
@@ -46,10 +54,13 @@ public class Eliminar_Estilo extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEliminar)
-                    .addComponent(lblEstilo)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txt_Estilos)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnEliminar)
+                            .addComponent(lblEstilo))
+                        .addGap(0, 64, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -57,8 +68,8 @@ public class Eliminar_Estilo extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(lblEstilo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txt_Estilos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
                 .addComponent(btnEliminar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -82,6 +93,21 @@ public class Eliminar_Estilo extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        boolean eliminado = false;
+        CRUD_Codigo_Eliminar crud_ce = new CRUD_Codigo_Eliminar();
+        if(!txt_Estilos.getText().equals("")){
+            eliminado = crud_ce.Eliminar_Estilo_Cod(txt_Estilos.getText());
+        }else{
+            JOptionPane.showMessageDialog(null, "Escriba el codigo del estilo");
+        }
+        if(eliminado){
+            JOptionPane.showMessageDialog(null, "Se ha eliminado correctamente");
+        }else{
+            JOptionPane.showMessageDialog(null, "No se pudo eliminar el estilo");
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -127,8 +153,8 @@ public class Eliminar_Estilo extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblEstilo;
+    private javax.swing.JTextField txt_Estilos;
     // End of variables declaration//GEN-END:variables
 }

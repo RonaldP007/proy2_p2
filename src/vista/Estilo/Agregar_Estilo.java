@@ -5,6 +5,9 @@
  */
 package vista.Estilo;
 
+import codigo.CRUD_Codigo_Agregar;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Enrique
@@ -38,6 +41,11 @@ public class Agregar_Estilo extends javax.swing.JDialog {
         lblEstilo.setText("Nombre del nuevo estilo:");
 
         btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -82,6 +90,19 @@ public class Agregar_Estilo extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        boolean agregado = false;
+        if(!txtEstilo.getText().equals("")){
+            CRUD_Codigo_Agregar crud_cod = new CRUD_Codigo_Agregar();
+            agregado = crud_cod.Agregar_Estilo_Cod(txtEstilo.getText());
+        }else{
+            JOptionPane.showMessageDialog(null, "Escriba un nombre");
+        }
+        if(agregado){
+            JOptionPane.showMessageDialog(null, "Se ha guardado exitosamente");
+        }
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
      * @param args the command line arguments

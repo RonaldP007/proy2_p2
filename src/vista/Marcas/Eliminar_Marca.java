@@ -5,6 +5,8 @@
  */
 package vista.Marcas;
 
+import codigo.CRUD_Codigo_Eliminar;
+import javax.swing.JOptionPane;
 import vista.Estilo.*;
 
 /**
@@ -33,11 +35,16 @@ public class Eliminar_Marca extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         btnEliminar = new javax.swing.JButton();
         lblMarcas = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        txt_Marcas = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         lblMarcas.setText("Marcas:");
 
@@ -48,10 +55,13 @@ public class Eliminar_Marca extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEliminar)
-                    .addComponent(lblMarcas)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txt_Marcas)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnEliminar)
+                            .addComponent(lblMarcas))
+                        .addGap(0, 64, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -59,8 +69,8 @@ public class Eliminar_Marca extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(lblMarcas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txt_Marcas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
                 .addComponent(btnEliminar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -84,6 +94,21 @@ public class Eliminar_Marca extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        boolean eliminado = false;
+        CRUD_Codigo_Eliminar crud_ce = new CRUD_Codigo_Eliminar();
+        if(!txt_Marcas.getText().equals("")){
+            eliminado = crud_ce.Eliminar_Marca_Cod(txt_Marcas.getText());
+        }else{
+            JOptionPane.showMessageDialog(null, "Escriba el codigo del marca");
+        }
+        if(eliminado){
+            JOptionPane.showMessageDialog(null, "Se ha eliminado correctamente");
+        }else{
+            JOptionPane.showMessageDialog(null, "No se pudo eliminar la marca");
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -132,8 +157,8 @@ public class Eliminar_Marca extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblMarcas;
+    private javax.swing.JTextField txt_Marcas;
     // End of variables declaration//GEN-END:variables
 }
