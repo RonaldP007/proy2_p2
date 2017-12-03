@@ -3,23 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vista.Modelo;
-
-import codigo.CRUD_Codigo_Eliminar;
-import javax.swing.JOptionPane;
-import vista.Marcas.*;
-import vista.Estilo.*;
+package vista.Vehiculo;
 
 /**
  *
  * @author Enrique
  */
-public class Eliminar_Modelo extends javax.swing.JDialog {
+public class Eliminar_Vehiculo extends javax.swing.JDialog {
 
     /**
-     * Creates new form Eliminar_Estilo
+     * Creates new form Eliminar_Vehiculo
      */
-    public Eliminar_Modelo(javax.swing.JDialog parent, boolean modal) {
+    public Eliminar_Vehiculo(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -34,49 +29,61 @@ public class Eliminar_Modelo extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
-        lblModelo = new javax.swing.JLabel();
-        txt_Modelo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        btnEliminar.setText("Eliminar");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
-        });
+        jLabel1.setText("Ingrese la placa del vehiculo:");
 
-        lblModelo.setText("Codigo del Modelo:");
-
-        txt_Modelo.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_ModeloKeyTyped(evt);
+                jTextField1KeyTyped(evt);
             }
         });
+
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
+            }
+        });
+
+        jLabel2.setText("-");
+
+        btnEliminar.setText("Eliminar Vehiculo");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jTextField1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_Modelo)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnEliminar)
-                            .addComponent(lblModelo))
-                        .addGap(0, 64, Short.MAX_VALUE)))
+                        .addComponent(jLabel1)
+                        .addGap(0, 7, Short.MAX_VALUE))
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblModelo)
-                .addGap(11, 11, 11)
-                .addComponent(txt_Modelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnEliminar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -102,27 +109,19 @@ public class Eliminar_Modelo extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        boolean eliminado = false;
-        CRUD_Codigo_Eliminar crud_ce = new CRUD_Codigo_Eliminar();
-        if(!txt_Modelo.getText().equals("")){
-            eliminado = crud_ce.Eliminar_Modelo_Cod(txt_Modelo.getText());
-        }else{
-            JOptionPane.showMessageDialog(null, "Escriba el codigo del modelo");
-        }
-        if(eliminado){
-            JOptionPane.showMessageDialog(null, "Se ha eliminado correctamente");
-        }else{
-            JOptionPane.showMessageDialog(null, "No se pudo eliminar el modelo");
-        }
-    }//GEN-LAST:event_btnEliminarActionPerformed
-
-    private void txt_ModeloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_ModeloKeyTyped
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
         char c = evt.getKeyChar();
         if (c < '0' || c > '9' && c != '\b') {
             evt.consume();
         }
-    }//GEN-LAST:event_txt_ModeloKeyTyped
+    }//GEN-LAST:event_jTextField2KeyTyped
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        char c = evt.getKeyChar();
+        if(!Character.isLetter(c)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField1KeyTyped
 
     /**
      * @param args the command line arguments
@@ -141,35 +140,20 @@ public class Eliminar_Modelo extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Eliminar_Modelo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Eliminar_Vehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Eliminar_Modelo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Eliminar_Vehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Eliminar_Modelo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Eliminar_Vehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Eliminar_Modelo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Eliminar_Vehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Eliminar_Modelo dialog = new Eliminar_Modelo(new javax.swing.JDialog(), true);
+                Eliminar_Vehiculo dialog = new Eliminar_Vehiculo(new javax.swing.JDialog(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -183,8 +167,10 @@ public class Eliminar_Modelo extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblModelo;
-    private javax.swing.JTextField txt_Modelo;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

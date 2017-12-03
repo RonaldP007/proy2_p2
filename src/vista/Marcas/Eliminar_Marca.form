@@ -87,10 +87,13 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblMarcas">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Marcas:"/>
+            <Property name="text" type="java.lang.String" value="Codigo de la Marca:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_Marcas">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_MarcasKeyTyped"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

@@ -46,7 +46,13 @@ public class Eliminar_Marca extends javax.swing.JDialog {
             }
         });
 
-        lblMarcas.setText("Marcas:");
+        lblMarcas.setText("Codigo de la Marca:");
+
+        txt_Marcas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_MarcasKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -109,6 +115,13 @@ public class Eliminar_Marca extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "No se pudo eliminar la marca");
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void txt_MarcasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_MarcasKeyTyped
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9' && c != '\b') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_MarcasKeyTyped
 
     /**
      * @param args the command line arguments

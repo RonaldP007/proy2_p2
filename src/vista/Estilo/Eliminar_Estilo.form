@@ -87,10 +87,13 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblEstilo">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Estilos:"/>
+            <Property name="text" type="java.lang.String" value="Codigo del Estilo:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_Estilos">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_EstilosKeyTyped"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

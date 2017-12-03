@@ -87,10 +87,13 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblOficina">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Oficina:"/>
+            <Property name="text" type="java.lang.String" value="Codigo de la Oficina:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_Oficina">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_OficinaKeyTyped"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

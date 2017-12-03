@@ -63,6 +63,11 @@ public class CRUD_Vehiculo extends javax.swing.JDialog {
         );
 
         jMenu1.setText("Regresar");
+        jMenu1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jMenu1KeyTyped(evt);
+            }
+        });
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Opciones");
@@ -99,6 +104,10 @@ public class CRUD_Vehiculo extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenu1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jMenu1KeyTyped
+        this.dispose();
+    }//GEN-LAST:event_jMenu1KeyTyped
 
     /**
      * @param args the command line arguments

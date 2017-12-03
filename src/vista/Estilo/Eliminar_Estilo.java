@@ -45,7 +45,13 @@ public class Eliminar_Estilo extends javax.swing.JDialog {
             }
         });
 
-        lblEstilo.setText("Estilos:");
+        lblEstilo.setText("Codigo del Estilo:");
+
+        txt_Estilos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_EstilosKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -108,6 +114,13 @@ public class Eliminar_Estilo extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "No se pudo eliminar el estilo");
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void txt_EstilosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_EstilosKeyTyped
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9' && c != '\b') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_EstilosKeyTyped
 
     /**
      * @param args the command line arguments

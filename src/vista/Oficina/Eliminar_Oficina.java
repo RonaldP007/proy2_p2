@@ -46,7 +46,13 @@ public class Eliminar_Oficina extends javax.swing.JDialog {
             }
         });
 
-        lblOficina.setText("Oficina:");
+        lblOficina.setText("Codigo de la Oficina:");
+
+        txt_Oficina.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_OficinaKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -109,6 +115,13 @@ public class Eliminar_Oficina extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "No se pudo eliminar la oficina");
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void txt_OficinaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_OficinaKeyTyped
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9' && c != '\b') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_OficinaKeyTyped
 
     /**
      * @param args the command line arguments
