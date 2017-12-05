@@ -5,6 +5,9 @@
  */
 package vista.Vehiculo;
 
+import codigo.Cargar_Foto;
+import java.io.FileInputStream;
+
 /**
  *
  * @author Enrique
@@ -14,6 +17,9 @@ public class Agregar_Vehiculo extends javax.swing.JDialog {
     /**
      * Creates new form Agregar_Vehiculo
      */
+    FileInputStream fis;
+    int longitudBytes;
+    
     public Agregar_Vehiculo(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -51,7 +57,8 @@ public class Agregar_Vehiculo extends javax.swing.JDialog {
         jRadioButton3 = new javax.swing.JRadioButton();
         jRadioButton4 = new javax.swing.JRadioButton();
         btnGuardar = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
+        lblFoto = new javax.swing.JLabel();
+        btnFoto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -115,7 +122,12 @@ public class Agregar_Vehiculo extends javax.swing.JDialog {
 
         btnGuardar.setText("Guardar");
 
-        jLabel9.setText("Foto");
+        btnFoto.setText("Foto");
+        btnFoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFotoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -142,9 +154,10 @@ public class Agregar_Vehiculo extends javax.swing.JDialog {
                                 .addComponent(jcbEstilo, javax.swing.GroupLayout.Alignment.LEADING, 0, 115, Short.MAX_VALUE)))
                         .addGap(46, 46, 46)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8)
-                            .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -188,16 +201,19 @@ public class Agregar_Vehiculo extends javax.swing.JDialog {
                         .addComponent(jcbModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5))
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jcbEstilo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel6))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jRadioButton3)
-                        .addComponent(jRadioButton4)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnFoto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jRadioButton3)
+                            .addComponent(jRadioButton4))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -260,6 +276,13 @@ public class Agregar_Vehiculo extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_txtPlaca_leKeyTyped
 
+    private void btnFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFotoActionPerformed
+        Cargar_Foto cf = new Cargar_Foto();
+        Object[] info_foto = cf.Cargar_foto(lblFoto);
+        fis = (FileInputStream) info_foto[0];
+        longitudBytes = (int) info_foto[1];
+    }//GEN-LAST:event_btnFotoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -303,6 +326,7 @@ public class Agregar_Vehiculo extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnFoto;
     private javax.swing.JButton btnGuardar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
@@ -314,7 +338,6 @@ public class Agregar_Vehiculo extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton4;
@@ -323,6 +346,7 @@ public class Agregar_Vehiculo extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> jcbModelo;
     private javax.swing.JRadioButton jrbAutomatico;
     private javax.swing.JRadioButton jrbManual;
+    private javax.swing.JLabel lblFoto;
     private javax.swing.JTextField txtPlaca_le;
     private javax.swing.JTextField txtPlaca_num;
     private javax.swing.JTextField txtPrecio;

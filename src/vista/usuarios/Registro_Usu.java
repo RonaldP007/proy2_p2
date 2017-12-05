@@ -5,18 +5,11 @@
  */
 package vista.usuarios;
 
+import codigo.Cargar_Foto;
 import codigo.Registro_Usuario;
-import java.awt.Image;
 import java.awt.event.KeyEvent;
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -191,7 +184,10 @@ public class Registro_Usu extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        cargar2_foto();
+        Cargar_Foto cf = new Cargar_Foto();
+        Object[] info_foto = cf.Cargar_foto(lblfoto);
+        fis = (FileInputStream) info_foto[0];
+        longitudBytes = (int) info_foto[1];
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
@@ -223,6 +219,7 @@ public class Registro_Usu extends javax.swing.JDialog {
 
         // TODO add your handling code here:
         Registro_Usuario ru = new Registro_Usuario();
+        System.out.println(fis+System.lineSeparator()+longitudBytes);
         boolean se_guardo = ru.Guardar_Usuario(Integer.parseInt(txtCedula.getText()), txtNombre.getText(), Integer.parseInt(txtTel.getText()), txtDir.getText(), fis, longitudBytes, jPass.getText());
         if (se_guardo == true) {
             JOptionPane.showMessageDialog(null, "Registro exitoso");
@@ -297,38 +294,4 @@ public class Registro_Usu extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
  
-    public void cargar2_foto() {
-        lblfoto.setIcon(null);
-        JFileChooser j = new JFileChooser();
-        j.setFileSelectionMode(JFileChooser.FILES_ONLY);//solo archivos y no carpetas
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Formatos de Archivos JPEG(*.JPG;*.JPEG)", "jpg", "jpeg");
-        //Si deseas que se muestre primero los filtros usa la linea q esta abajo de esta.
-        j.setFileFilter(filtro);
-        // Agregamos el Filtro pero cuidado se mostrara despues de todos los archivos
-        j.addChoosableFileFilter(filtro);
-        // Colocamos titulo a nuestra ventana de Seleccion
-        j.setDialogTitle("Abrir foto");
-        //Si deseamos que muestre una carpeta predetermina usa la siguiente linea
-        File ruta = new File("src/fotos");
-        //Le implementamos a nuestro ventana de seleccion
-        j.setCurrentDirectory(ruta);
-        int estado = j.showOpenDialog(null);
-        if (estado == JFileChooser.APPROVE_OPTION) {
-            try {
-                fis = new FileInputStream(j.getSelectedFile());
-                //necesitamos saber la cantidad de bytes
-                this.longitudBytes = (int) j.getSelectedFile().length();
-                try {
-                    Image icono = ImageIO.read(j.getSelectedFile()).getScaledInstance(lblfoto.getWidth(), lblfoto.getHeight(), Image.SCALE_DEFAULT);
-                    lblfoto.setIcon(new ImageIcon(icono));
-                    lblfoto.updateUI();
-
-                } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(rootPane, "imagen: " + ex);
-                }
-            } catch (FileNotFoundException ex) {
-                ex.printStackTrace();
-            }
-        }
-    }
 }

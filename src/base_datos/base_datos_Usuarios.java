@@ -30,7 +30,7 @@ public class base_datos_Usuarios {
     // pass Andres
     // static String pass = "Admin";
     //pass Ronald
-     static String pass = "RPG007rpg";
+    static String pass = "RPG007rpg";
 
     public boolean Guardar_Usuario_db(int cedula, String nombre, int telefono, String direccion, FileInputStream fis, int longitudBytes, String contraseña) {
         boolean se_guardo = false;
@@ -59,17 +59,16 @@ public class base_datos_Usuarios {
         try {
             conn = DriverManager.getConnection(jdbc, "postgres", pass);
             query = "SELECT u.cedula, u.nombre, u.telefono, u.direccion, u.foto_usuario, u.contraseña, u.tipo FROM usuarios as u where cedula = " + cedula + ";";
-
             st = conn.createStatement();
             rs = st.executeQuery(query);
             while (rs.next()) {
-                usuarios usuario = new usuarios( rs.getString("nombre"),
-                    rs.getInt("cedula"),
-                    rs.getInt("telefono"),
-                    rs.getBinaryStream("foto_usuario"),
-                    rs.getString("direccion"),
-                    rs.getString("contraseña"),
-                    rs.getBoolean("tipo"));
+                usuarios usuario = new usuarios(rs.getString("nombre"),
+                        rs.getInt("cedula"),
+                        rs.getInt("telefono"),
+                        rs.getBinaryStream("foto_usuario"),
+                        rs.getString("direccion"),
+                        rs.getString("contraseña"),
+                        rs.getBoolean("tipo"));
 
                 informacion_usuario.add(usuario);
             }
@@ -79,7 +78,5 @@ public class base_datos_Usuarios {
             ex.printStackTrace();
         }
         return informacion_usuario;
-    }   
+    }
 }
-
-
