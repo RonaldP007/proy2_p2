@@ -19,8 +19,8 @@ public class usuarios {
     FileInputStream fis;
     InputStream foto;
     boolean tipo;
-
-    public usuarios(String nombre, int cedula, int telefono, FileInputStream fis, int longitudBytes, String direccion, String contraseña, boolean tipo) {
+/*
+    public usuarios( int cedula,String nombre, int telefono, FileInputStream fis, int longitudBytes, String direccion, String contraseña, boolean tipo) {
         this.nombre = nombre;
         this.cedula = cedula;
         this.telefono = telefono;
@@ -30,8 +30,8 @@ public class usuarios {
         this.contraseña = contraseña;
         this.tipo = tipo;
     }
-
-    public usuarios(String nombre, int cedula, int telefono, InputStream foto, String direccion, String contraseña, boolean tipo) {
+*/
+    public usuarios( int cedula,String nombre, int telefono, InputStream foto, String direccion, String contraseña, boolean tipo) {
         this.nombre = nombre;
         this.cedula = cedula;
         this.telefono = telefono;

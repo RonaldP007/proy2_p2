@@ -18,18 +18,27 @@ public class Registro_Usuario {
 
   
     public boolean Guardar_Usuario(int cedula, String nombre, int telefono, String direccion, FileInputStream fis, int longitudBytes, String contraseña) {
-
         boolean guardado;
+        MD5 md5 = new MD5();
         base_datos_Usuarios ae_db = new base_datos_Usuarios();
-        guardado = ae_db.Guardar_Usuario_db(cedula, nombre, telefono, direccion, fis, longitudBytes, contraseña);
-
+        guardado = ae_db.Guardar_Usuario_db(cedula, nombre, telefono, direccion, fis, longitudBytes, md5.Clave_MD5(contraseña));
         return guardado;
     }
 
-    public ArrayList<usuarios> Cargar_Usuario(int cedula) {
+    public usuarios Cargar_Usuario(int cedula) {
 
         base_datos_Usuarios ae_db = new base_datos_Usuarios();
-        ArrayList<usuarios> informacion_usuario = ae_db.Buscar_Usuario_DB(cedula);
+        usuarios informacion_usuario = ae_db.Buscar_Usuario_DB(cedula);
         return informacion_usuario;
+    }
+    
+    public boolean Verificar_Usuario(String cedula,String clave){
+        MD5 md5 = new MD5();
+        boolean usuario_verificado = false;
+        usuarios usuario = Cargar_Usuario(Integer.parseInt(cedula));
+        if((usuario != null) & (md5.Clave_MD5(clave).equals(usuario.getContraseña()))){
+            usuario_verificado = true;
+        }
+        return usuario_verificado;
     }
 }

@@ -136,13 +136,13 @@ public class carg_usu_prueba extends javax.swing.JDialog {
             // TODO add your handling code here:
             Registro_Usuario rg = new Registro_Usuario();
             ImageIcon carg_fot;
-            ArrayList<usuarios> informacion_usuario = rg.Cargar_Usuario(Integer.parseInt(txtCedula.getText()));
+            usuarios informacion_usuario = rg.Cargar_Usuario(Integer.parseInt(txtCedula.getText()));
             
-            String contraseña = informacion_usuario.get(0).getContraseña();
-            String nombre = informacion_usuario.get(0).getNombre();
-            String dir = informacion_usuario.get(0).getDireccion();
-            int telefono = informacion_usuario.get(0).getTelefono();
-            InputStream foto = informacion_usuario.get(0).getFoto();
+            String contraseña = informacion_usuario.getContraseña();
+            String nombre = informacion_usuario.getNombre();
+            String dir = informacion_usuario.getDireccion();
+            int telefono = informacion_usuario.getTelefono();
+            InputStream foto = informacion_usuario.getFoto();
             
             txtNombre.setText(nombre);
             txtDir.setText(dir);

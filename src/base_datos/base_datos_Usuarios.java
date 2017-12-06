@@ -54,29 +54,27 @@ public class base_datos_Usuarios {
         return se_guardo;
     }
 
-    public ArrayList<usuarios> Buscar_Usuario_DB(int cedula) {
-        ArrayList<usuarios> informacion_usuario = new ArrayList<>();
+    public usuarios Buscar_Usuario_DB(int cedula) {
+        usuarios usuario = null;
         try {
             conn = DriverManager.getConnection(jdbc, "postgres", pass);
             query = "SELECT u.cedula, u.nombre, u.telefono, u.direccion, u.foto_usuario, u.contraseña, u.tipo FROM usuarios as u where cedula = " + cedula + ";";
             st = conn.createStatement();
             rs = st.executeQuery(query);
             while (rs.next()) {
-                usuarios usuario = new usuarios(rs.getString("nombre"),
-                        rs.getInt("cedula"),
+                usuario = new usuarios(rs.getInt("cedula"),
+                        rs.getString("nombre"),
                         rs.getInt("telefono"),
                         rs.getBinaryStream("foto_usuario"),
                         rs.getString("direccion"),
                         rs.getString("contraseña"),
                         rs.getBoolean("tipo"));
-
-                informacion_usuario.add(usuario);
             }
             conn.close();
         } catch (SQLException ex) {
-            informacion_usuario = null;
+            usuario = null;
             ex.printStackTrace();
         }
-        return informacion_usuario;
+        return usuario;
     }
 }
