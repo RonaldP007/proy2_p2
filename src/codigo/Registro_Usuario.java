@@ -32,13 +32,15 @@ public class Registro_Usuario {
         return informacion_usuario;
     }
     
-    public boolean Verificar_Usuario(String cedula,String clave){
-        MD5 md5 = new MD5();
-        boolean usuario_verificado = false;
+    public usuarios Verificar_Usuario(String cedula){
         usuarios usuario = Cargar_Usuario(Integer.parseInt(cedula));
-        if((usuario != null) & (md5.Clave_MD5(clave).equals(usuario.getContraseña()))){
-            usuario_verificado = true;
-        }
-        return usuario_verificado;
+        return usuario;
+    }
+    
+    public boolean Tipo_Usuario(usuarios usuario,String clave){
+        MD5 md5 = new MD5();
+        boolean tipo;
+        tipo = (md5.Clave_MD5(clave).equals(usuario.getContraseña())) && usuario.getTipo() == true;
+        return tipo;
     }
 }

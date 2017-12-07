@@ -5,6 +5,7 @@
  */
 package vista.usuarios;
 
+import Objetos.usuarios;
 import codigo.Registro_Usuario;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
@@ -157,11 +158,16 @@ public class Login extends javax.swing.JFrame {
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
         Registro_Usuario ru = new Registro_Usuario();
         String clave = new String(jpsContra.getPassword());
-        boolean correcto = ru.Verificar_Usuario(txtUsuario.getText(), clave);
-        if(correcto){
-            Interfaz_Renta ir = new Interfaz_Renta();
-            ir.setVisible(true);
-            this.dispose();
+        usuarios usuario = ru.Verificar_Usuario(txtUsuario.getText());
+        if(usuario != null){
+            boolean tipo_usuario = ru.Tipo_Usuario(usuario, clave);
+            if(tipo_usuario){
+                // Interfaz Administrador
+            }else{
+                Interfaz_Renta ir = new Interfaz_Renta();
+                ir.setVisible(true);
+                this.dispose();
+            }
         }else{
             JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta");
             txtUsuario.setText("");
