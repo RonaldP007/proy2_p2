@@ -22,7 +22,8 @@ public class CRUD_DB_Agregar {
     //Conexion Andres jdbc:postgresql://localhost:5432/programacion   Admin
     //Conexion Ronald
     static String jdbc = "jdbc:postgresql://localhost:5432/programacion";
-    static String pass = "Admin";
+   // static String pass = "Admin";
+    static String pass = "RPG007rpg";
     
     public boolean Agregar_Estilo_DB(String estilo) {
         boolean se_guardo;
