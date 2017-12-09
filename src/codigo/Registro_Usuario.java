@@ -8,7 +8,6 @@ package codigo;
 import Objetos.usuarios;
 import base_datos.base_datos_Usuarios;
 import java.io.FileInputStream;
-import java.util.ArrayList;
 
 /**
  *

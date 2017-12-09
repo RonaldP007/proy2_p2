@@ -6,6 +6,7 @@
 package vista.Vehiculo;
 
 import codigo.Cargar_Foto;
+import codigo.Cargar_Info_Cod;
 import java.io.FileInputStream;
 
 /**
@@ -19,10 +20,11 @@ public class Agregar_Vehiculo extends javax.swing.JDialog {
      */
     FileInputStream fis;
     int longitudBytes;
-    
+
     public Agregar_Vehiculo(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        Cargar_Combos();
     }
 
     /**
@@ -80,17 +82,12 @@ public class Agregar_Vehiculo extends javax.swing.JDialog {
 
         jLabel3.setText("Marca:");
 
-        jcbMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jcbModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel4.setText("Modelo:");
-
-        jcbEstilo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel5.setText("Estilo:");
 
         buttonGroup1.add(jrbManual);
+        jrbManual.setSelected(true);
         jrbManual.setText("Manual");
 
         buttonGroup1.add(jrbAutomatico);
@@ -115,12 +112,15 @@ public class Agregar_Vehiculo extends javax.swing.JDialog {
         });
 
         buttonGroup2.add(jRadioButton3);
+        jRadioButton3.setSelected(true);
         jRadioButton3.setText("Disponible");
 
         buttonGroup2.add(jRadioButton4);
         jRadioButton4.setText("Ocupado");
 
         btnGuardar.setText("Guardar");
+
+        lblFoto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btnFoto.setText("Foto");
         btnFoto.addActionListener(new java.awt.event.ActionListener() {
@@ -250,7 +250,12 @@ public class Agregar_Vehiculo extends javax.swing.JDialog {
 
     private void txtPlaca_numKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPlaca_numKeyTyped
         char c = evt.getKeyChar();
-        if (c < '0' || c > '9' && c != '\b') {
+        String placa = txtPlaca_num.getText();
+        if (placa.length() <= 2) {
+            if (c < '0' || c > '9' && c != '\b') {
+                evt.consume();
+            }
+        } else {
             evt.consume();
         }
     }//GEN-LAST:event_txtPlaca_numKeyTyped
@@ -271,7 +276,12 @@ public class Agregar_Vehiculo extends javax.swing.JDialog {
 
     private void txtPlaca_leKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPlaca_leKeyTyped
         char c = evt.getKeyChar();
-        if(!Character.isLetter(c)){
+        String placa = txtPlaca_le.getText();
+        if (placa.length() <= 2) {
+            if (!Character.isLetter(c)) {
+                evt.consume();
+            }
+        } else {
             evt.consume();
         }
     }//GEN-LAST:event_txtPlaca_leKeyTyped
@@ -352,4 +362,12 @@ public class Agregar_Vehiculo extends javax.swing.JDialog {
     private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtYear;
     // End of variables declaration//GEN-END:variables
+
+    private void Cargar_Combos() {
+        Cargar_Info_Cod cic = new Cargar_Info_Cod();
+        cic.Cargar_Combos(jcbMarca,jcbModelo,jcbEstilo);
+        jcbMarca.repaint();
+        jcbEstilo.repaint();
+        jcbModelo.repaint();
+    }
 }
