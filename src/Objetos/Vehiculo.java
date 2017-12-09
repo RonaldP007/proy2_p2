@@ -14,15 +14,15 @@ import java.io.InputStream;
  */
 public class Vehiculo {
 
-    String placa, marca;
-    String modelo, estilo;
+    String placa;
+    int modelo, estilo, marca;
     int fabricacion, precio_dia;
     boolean transmision, estado;
     FileInputStream fis;
     InputStream foto;
     int longitudBytes;
 
-    public Vehiculo(String placa, String marca, String modelo, String estilo, boolean transmision,
+    public Vehiculo(String placa, int marca, int modelo, int estilo, boolean transmision,
             int fabricacion, int precio_dia, int longitudBytes, FileInputStream fis, InputStream foto, boolean estado) {
         this.placa = placa;
         this.marca = marca;
@@ -42,15 +42,15 @@ public class Vehiculo {
         return placa;
     }
 
-    public String getMarca() {
+    public int getMarca() {
         return marca;
     }
 
-    public String getModelo() {
+    public int getModelo() {
         return modelo;
     }
 
-    public String getEstilo() {
+    public int getEstilo() {
         return estilo;
     }
 
@@ -78,6 +78,10 @@ public class Vehiculo {
         return longitudBytes;
     }
 
+    public FileInputStream getFis() {
+        return fis;
+    }
+    
     public void setBytes(int longitudBytes) {
         this.longitudBytes = longitudBytes;
     }
@@ -90,15 +94,15 @@ public class Vehiculo {
         this.placa = placa;
     }
 
-    public void setMarca(String marca) {
+    public void setMarca(int marca) {
         this.marca = marca;
     }
 
-    public void setModelo(String modelo) {
+    public void setModelo(int modelo) {
         this.modelo = modelo;
     }
 
-    public void setEstilo(String estilo) {
+    public void setEstilo(int estilo) {
         this.estilo = estilo;
     }
 

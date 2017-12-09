@@ -6,8 +6,10 @@
 package vista.Vehiculo;
 
 import codigo.Cargar_Foto;
+import codigo.CRUD_Codigo_Agregar;
 import codigo.Cargar_Info_Cod;
 import java.io.FileInputStream;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -56,8 +58,8 @@ public class Agregar_Vehiculo extends javax.swing.JDialog {
         txtYear = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txtPrecio = new javax.swing.JTextField();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
+        jrbDisponible = new javax.swing.JRadioButton();
+        jrbOcupado = new javax.swing.JRadioButton();
         btnGuardar = new javax.swing.JButton();
         lblFoto = new javax.swing.JLabel();
         btnFoto = new javax.swing.JButton();
@@ -111,14 +113,19 @@ public class Agregar_Vehiculo extends javax.swing.JDialog {
             }
         });
 
-        buttonGroup2.add(jRadioButton3);
-        jRadioButton3.setSelected(true);
-        jRadioButton3.setText("Disponible");
+        buttonGroup2.add(jrbDisponible);
+        jrbDisponible.setSelected(true);
+        jrbDisponible.setText("Disponible");
 
-        buttonGroup2.add(jRadioButton4);
-        jRadioButton4.setText("Ocupado");
+        buttonGroup2.add(jrbOcupado);
+        jrbOcupado.setText("Ocupado");
 
         btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         lblFoto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -170,9 +177,9 @@ public class Agregar_Vehiculo extends javax.swing.JDialog {
                         .addGap(38, 38, 38)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jRadioButton3)
+                                .addComponent(jrbDisponible)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButton4))
+                                .addComponent(jrbOcupado))
                             .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -212,8 +219,8 @@ public class Agregar_Vehiculo extends javax.swing.JDialog {
                         .addComponent(btnFoto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRadioButton3)
-                            .addComponent(jRadioButton4))))
+                            .addComponent(jrbDisponible)
+                            .addComponent(jrbOcupado))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -293,6 +300,65 @@ public class Agregar_Vehiculo extends javax.swing.JDialog {
         longitudBytes = (int) info_foto[1];
     }//GEN-LAST:event_btnFotoActionPerformed
 
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        CRUD_Codigo_Agregar crud_ca = new CRUD_Codigo_Agregar();
+        boolean agregado;
+        if (!txtPlaca_num.getText().equals("") && !txtPlaca_le.getText().equals("")
+                && !txtYear.getText().equals("") && !txtPrecio.getText().equals("")) {
+            if (fis != null && longitudBytes > 0) {
+                if (jrbAutomatico.isSelected()) {
+                    if (jrbDisponible.isSelected()) {
+                        agregado = crud_ca.Agregar_Vehiculo_Cod(txtPlaca_le.getText() + '-' + txtPlaca_num.getText(),
+                                (String) jcbMarca.getSelectedItem(), (String) jcbModelo.getSelectedItem(), (String) jcbEstilo.getSelectedItem(), true,
+                                txtYear.getText(), txtPrecio.getText(), longitudBytes, fis, true);
+                        if (agregado) {
+                            JOptionPane.showMessageDialog(null, "Vehiculo agregado exitosamente");
+                            this.dispose();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "No se pudo agregar el vehiculo");
+                        }
+                    } else {
+                        agregado = crud_ca.Agregar_Vehiculo_Cod(txtPlaca_le.getText() + '-' + txtPlaca_num.getText(),
+                                (String) jcbMarca.getSelectedItem(), (String) jcbModelo.getSelectedItem(), (String) jcbEstilo.getSelectedItem(), true,
+                                txtYear.getText(), txtPrecio.getText(), longitudBytes, fis, false);
+                        if (agregado) {
+                            JOptionPane.showMessageDialog(null, "Vehiculo agregado exitosamente");
+                            this.dispose();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "No se pudo agregar el vehiculo");
+                        }
+                    }
+                } else {
+                    if (jrbDisponible.isSelected()) {
+                        agregado = crud_ca.Agregar_Vehiculo_Cod(txtPlaca_le.getText() + '-' + txtPlaca_num.getText(),
+                                (String) jcbMarca.getSelectedItem(), (String) jcbModelo.getSelectedItem(), (String) jcbEstilo.getSelectedItem(), false,
+                                txtYear.getText(), txtPrecio.getText(), longitudBytes, fis, true);
+                        if (agregado) {
+                            JOptionPane.showMessageDialog(null, "Vehiculo agregado exitosamente");
+                            this.dispose();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "No se pudo agregar el vehiculo");
+                        }
+                    } else {
+                        agregado = crud_ca.Agregar_Vehiculo_Cod(txtPlaca_le.getText() + '-' + txtPlaca_num.getText(),
+                                (String) jcbMarca.getSelectedItem(), (String) jcbModelo.getSelectedItem(), (String) jcbEstilo.getSelectedItem(), false,
+                                txtYear.getText(), txtPrecio.getText(), longitudBytes, fis, false);
+                        if (agregado) {
+                            JOptionPane.showMessageDialog(null, "Vehiculo agregado exitosamente");
+                            this.dispose();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "No se pudo agregar el vehiculo");
+                        }
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No se ha cargado la foto");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Un espacio se encuentra vacio");
+        }
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -349,13 +415,13 @@ public class Agregar_Vehiculo extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JComboBox<String> jcbEstilo;
     private javax.swing.JComboBox<String> jcbMarca;
     private javax.swing.JComboBox<String> jcbModelo;
     private javax.swing.JRadioButton jrbAutomatico;
+    private javax.swing.JRadioButton jrbDisponible;
     private javax.swing.JRadioButton jrbManual;
+    private javax.swing.JRadioButton jrbOcupado;
     private javax.swing.JLabel lblFoto;
     private javax.swing.JTextField txtPlaca_le;
     private javax.swing.JTextField txtPlaca_num;
@@ -365,7 +431,7 @@ public class Agregar_Vehiculo extends javax.swing.JDialog {
 
     private void Cargar_Combos() {
         Cargar_Info_Cod cic = new Cargar_Info_Cod();
-        cic.Cargar_Combos(jcbMarca,jcbModelo,jcbEstilo);
+        cic.Cargar_Combos(jcbMarca, jcbModelo, jcbEstilo);
         jcbMarca.repaint();
         jcbEstilo.repaint();
         jcbModelo.repaint();

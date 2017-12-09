@@ -46,4 +46,20 @@ public class Cargar_Info_DB {
         return info;
     }
 
+    public int Info_Id_marca_modelo_estilo(String nombre_columna, String nombre) {
+        int id = 0;
+        try {
+            conn = DriverManager.getConnection(jdbc, "postgres", pass);
+            query = "SELECT " + "id_" + nombre_columna + " FROM " + nombre_columna + 's' + " WHERE"
+                    + " nombre_" + nombre_columna + " = '" + nombre + "';";
+            st = conn.createStatement();
+            rs = st.executeQuery(query);
+            rs.next();
+            id = rs.getInt("id_" + nombre_columna);
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
 }
