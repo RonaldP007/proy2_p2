@@ -5,7 +5,17 @@
  */
 package vista.Vehiculo;
 
+import Objetos.Vehiculo;
+import codigo.CRUD_Codigo_Modificar;
+import codigo.Cargar_Foto;
 import codigo.Cargar_Info_Cod;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,6 +26,9 @@ public class Modificar_Vehiculo extends javax.swing.JDialog {
     /**
      * Creates new form Modificar_Vehiculo
      */
+    FileInputStream fis;
+    int longitudBytes;
+    Vehiculo vehiculo;
     public Modificar_Vehiculo(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -76,6 +89,11 @@ public class Modificar_Vehiculo extends javax.swing.JDialog {
         });
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Marca:");
 
@@ -109,6 +127,11 @@ public class Modificar_Vehiculo extends javax.swing.JDialog {
         lblFoto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btnFoto.setText("Foto");
+        btnFoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFotoActionPerformed(evt);
+            }
+        });
 
         buttonGroup2.add(jrbDisponible);
         jrbDisponible.setSelected(true);
@@ -118,6 +141,11 @@ public class Modificar_Vehiculo extends javax.swing.JDialog {
         jrbOcupado.setText("Ocupado");
 
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -277,6 +305,62 @@ public class Modificar_Vehiculo extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_txtPrecioKeyTyped
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        Cargar_Info_Cod cic = new Cargar_Info_Cod();
+        vehiculo = cic.Buscar_Vehiculo(txtPlaca_letras.getText() + '-' + txtPlaca_num.getText());
+        if (vehiculo != null) {
+            Cargar_Vehiculo();
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        Cargar_Info_Cod cic = new Cargar_Info_Cod();
+        int marca = cic.Buscar_Id_Cod("marca",(String)jcbMarcas.getSelectedItem());
+        int modelo = cic.Buscar_Id_Cod("modelo",(String)jcbModelos.getSelectedItem());
+        int estilo = cic.Buscar_Id_Cod("estilo",(String)jcbEstilos.getSelectedItem());
+        vehiculo.setMarca(marca);
+        vehiculo.setModelo(modelo);
+        vehiculo.setEstilo(estilo);
+        vehiculo.setPrecio_dia(Integer.parseInt(txtPrecio.getText()));
+        vehiculo.setFabricacion(Integer.parseInt(txtYear.getText()));
+        if(jrbAutomatico.isSelected()){
+            vehiculo.setTransmision(true);
+        }else{
+            vehiculo.setTransmision(false);
+        }
+        if(jrbDisponible.isSelected()){
+            vehiculo.setEstado(true);
+        }else{
+            vehiculo.setEstado(false);
+        }
+        if(longitudBytes > 0 && fis != null){
+            vehiculo.setBytes(longitudBytes);
+            vehiculo.setFis(fis);
+            CRUD_Codigo_Modificar crud_cm = new CRUD_Codigo_Modificar();
+            boolean modificado = crud_cm.Modificar_Vehiculo_Foto_Mod(vehiculo);
+            if(modificado){
+                JOptionPane.showMessageDialog(null, "Vehiculo modificado");
+            }else{
+                JOptionPane.showMessageDialog(null, "no se puedo modificar el vehiculo");
+            }
+        }else{
+            CRUD_Codigo_Modificar crud_cm = new CRUD_Codigo_Modificar();
+            boolean modificado = crud_cm.Modificar_Vehiculo_Sin_Foto_Mod(vehiculo);
+            if(modificado){
+                JOptionPane.showMessageDialog(null, "Vehiculo modificado");
+            }else{
+                JOptionPane.showMessageDialog(null, "no se puedo modificar el vehiculo");
+            }
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFotoActionPerformed
+        Cargar_Foto cf = new Cargar_Foto();
+        Object[] info_foto = cf.Cargar_foto(lblFoto);
+        fis = (FileInputStream) info_foto[0];
+        longitudBytes = (int) info_foto[1];
+    }//GEN-LAST:event_btnFotoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -349,9 +433,43 @@ public class Modificar_Vehiculo extends javax.swing.JDialog {
 
     private void Cargar_Combos() {
         Cargar_Info_Cod cic = new Cargar_Info_Cod();
-        cic.Cargar_Combos(jcbMarcas,jcbModelos,jcbEstilos);
+        cic.Cargar_Combos(jcbMarcas, jcbModelos, jcbEstilos);
         jcbMarcas.repaint();
         jcbEstilos.repaint();
         jcbModelos.repaint();
+    }
+
+    private void Cargar_Vehiculo() {
+        Cargar_Info_Cod cic = new Cargar_Info_Cod();
+        
+        String marca = cic.nombre_marca_modelo_estilo(vehiculo.getMarca(),"marca");
+        String modelo = cic.nombre_marca_modelo_estilo(vehiculo.getModelo(),"modelo");
+        String estilo = cic.nombre_marca_modelo_estilo(vehiculo.getEstilo(),"estilo");
+        try {
+            ImageIcon carg_fot;
+            jcbMarcas.setSelectedItem(marca);
+            jcbModelos.setSelectedItem(modelo);
+            jcbEstilos.setSelectedItem(estilo);
+            txtPrecio.setText(String.valueOf(vehiculo.getPrecio_dia()));
+            txtYear.setText(String.valueOf(vehiculo.getFabricacion()));
+            if (vehiculo.getTransmision()) {
+                jrbAutomatico.setSelected(true);
+            } else {
+                jrbManual.setSelected(true);
+            }
+            if (vehiculo.getEstado()) {
+                jrbDisponible.setSelected(true);
+            } else {
+                jrbOcupado.setSelected(true);
+            }
+            BufferedImage bi = ImageIO.read(vehiculo.getFoto());
+            carg_fot = new ImageIcon(bi);
+            Image img = carg_fot.getImage();
+            Image newimg = img.getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT);
+            ImageIcon newicon = new ImageIcon(newimg);
+            lblFoto.setIcon(newicon);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }

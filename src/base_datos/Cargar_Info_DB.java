@@ -5,6 +5,7 @@
  */
 package base_datos;
 
+import Objetos.Vehiculo;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -61,5 +62,47 @@ public class Cargar_Info_DB {
             e.printStackTrace();
         }
         return id;
+    }
+
+    /*
+    SELECT ve.placa,ma.nombre_marca,mo.nombre_modelo,es.nombre_estilo,ve.transmision,ve.fabricacion,ve.precio,ve.foto,ve.estado FROM vehiculos AS ve INNER JOIN marcas AS ma 
+    ON ma.id_marca = ve.fk_marca INNER JOIN modelos AS mo ON mo.id_modelo = ve.fk_modelo INNER JOIN estilos AS es ON es.id_estilo = ve.fk_estilo WHERE placa = '?';
+     */
+    public Vehiculo Vehiculo(String placa) {
+        Vehiculo vehiculo;
+        try {
+            conn = DriverManager.getConnection(jdbc, "postgres", pass);
+            query = "SELECT ve.placa,ma.id_marca,mo.id_modelo,es.id_estilo,ve.transmision,ve.fabricacion,ve.precio,ve.foto,ve.estado FROM vehiculos AS ve INNER JOIN marcas AS ma "
+                    + "ON ma.id_marca = ve.fk_marca INNER JOIN modelos AS mo ON mo.id_modelo = ve.fk_modelo INNER JOIN estilos AS es ON es.id_estilo = ve.fk_estilo WHERE placa = '" + placa + "';";
+            st = conn.createStatement();
+            rs = st.executeQuery(query);
+            rs.next();
+            vehiculo = new Vehiculo(rs.getString("placa"), rs.getInt("id_marca"),
+                    rs.getInt("id_modelo"), rs.getInt("id_estilo"), rs.getBoolean("transmision"),
+                    rs.getInt("fabricacion"), rs.getInt("precio"), 0, null,
+                    rs.getBinaryStream("foto"), rs.getBoolean("estado"));
+            conn.close();
+        } catch (SQLException e) {
+            vehiculo = null;
+            e.printStackTrace();
+        }
+        return vehiculo;
+    }
+
+    public String Info_Nombre_marca_modelo_estilo(int id, String nombre) {
+        String nombre_tipo;
+        try {
+            conn = DriverManager.getConnection(jdbc, "postgres", pass);
+            query = "SELECT nombre_" + nombre + " FROM " + nombre + 's' + " WHERE id_" + nombre + " = " + id + ";";
+            st = conn.createStatement();
+            rs = st.executeQuery(query);
+            rs.next();
+            nombre_tipo = rs.getString("nombre_"+nombre);
+            conn.close();
+        } catch (SQLException e) {
+            nombre_tipo = "";
+            e.printStackTrace();
+        }
+        return nombre_tipo;
     }
 }

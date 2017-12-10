@@ -5,6 +5,7 @@
  */
 package codigo;
 
+import Objetos.Vehiculo;
 import base_datos.CRUD_DB_Modificar;
 
 /**
@@ -34,6 +35,18 @@ public class CRUD_Codigo_Modificar {
     public boolean Modificar_Estilo_Cod(String cod_estilo, String nuevo_nombre) {
         CRUD_DB_Modificar crud_dbm = new CRUD_DB_Modificar();
         boolean modificado = crud_dbm.Modificar_Estilo_DB(Integer.parseInt(cod_estilo),nuevo_nombre);
+        return modificado;
+    }
+
+    public boolean Modificar_Vehiculo_Foto_Mod(Vehiculo vehiculo) {
+        CRUD_DB_Modificar crud_db_mod = new CRUD_DB_Modificar();
+        boolean modificado = crud_db_mod.Modificar_Vehiculo_Foto(vehiculo);
+        return modificado;
+    }
+
+    public boolean Modificar_Vehiculo_Sin_Foto_Mod(Vehiculo vehiculo) {
+        CRUD_DB_Modificar crud_db_mod = new CRUD_DB_Modificar();
+        boolean modificado = crud_db_mod.Modificar_Vehiculo_Sin_Foto(vehiculo);
         return modificado;
     }
     

@@ -5,6 +5,7 @@
  */
 package base_datos;
 
+import Objetos.Vehiculo;
 import java.sql.*;
 
 /**
@@ -86,6 +87,52 @@ public class CRUD_DB_Modificar {
             conn.close();
             modificado = true;
         } catch (SQLException ex) {
+            modificado = false;
+        }
+        return modificado;
+    }
+
+    public boolean Modificar_Vehiculo_Foto(Vehiculo vehiculo) {
+        boolean modificado;
+        try {
+            conn = DriverManager.getConnection(jdbc, "postgres", pass);
+            query = "UPDATE vehiculos SET fk_marca = ?,fk_modelo = ?,fk_estilo = ?,transmision = ?,fabricacion = ?,precio = ?,foto = ?,estado = ? WHERE placa = '"+vehiculo.getPlaca()+"';";
+            pst = conn.prepareStatement(query);
+            pst.setInt(1, vehiculo.getMarca());
+            pst.setInt(2, vehiculo.getModelo());
+            pst.setInt(3, vehiculo.getEstilo());
+            pst.setBoolean(4, vehiculo.getTransmision());
+            pst.setInt(5, vehiculo.getFabricacion());
+            pst.setInt(6, vehiculo.getPrecio_dia());
+            pst.setBinaryStream(7,vehiculo.getFis(),vehiculo.getBytes());
+            pst.setBoolean(8, vehiculo.getEstado());
+            pst.executeUpdate();
+            conn.close();
+            modificado = true;
+        } catch (SQLException ex) {
+            modificado = false;
+        }
+        return modificado;
+    }
+
+    public boolean Modificar_Vehiculo_Sin_Foto(Vehiculo vehiculo) {
+        boolean modificado;
+        try {
+            conn = DriverManager.getConnection(jdbc, "postgres", pass);
+            query = "UPDATE vehiculos SET fk_marca = ?,fk_modelo = ?,fk_estilo = ?,transmision = ?,fabricacion = ?,precio = ?,estado = ? WHERE placa = '"+vehiculo.getPlaca()+"';";
+            pst = conn.prepareStatement(query);
+            pst.setInt(1, vehiculo.getMarca());
+            pst.setInt(2, vehiculo.getModelo());
+            pst.setInt(3, vehiculo.getEstilo());
+            pst.setBoolean(4, vehiculo.getTransmision());
+            pst.setInt(5, vehiculo.getFabricacion());
+            pst.setInt(6, vehiculo.getPrecio_dia());
+            pst.setBoolean(7, vehiculo.getEstado());
+            pst.executeUpdate();
+            conn.close();
+            modificado = true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
             modificado = false;
         }
         return modificado;
