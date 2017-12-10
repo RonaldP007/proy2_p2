@@ -5,6 +5,8 @@
  */
 package vista.Oficina;
 
+import codigo.Cargar_Info_Cod;
+
 /**
  *
  * @author Enrique
@@ -17,6 +19,7 @@ public class CRUD_Oficina extends javax.swing.JDialog {
     public CRUD_Oficina(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        Actualizar_txtArea();
     }
 
     /**
@@ -123,16 +126,19 @@ public class CRUD_Oficina extends javax.swing.JDialog {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         Modificar_Oficina mo = new Modificar_Oficina(this, true);
         mo.setVisible(true);
+        Actualizar_txtArea();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         Agregar_Oficina ao = new Agregar_Oficina(this, true);
         ao.setVisible(true);
+        Actualizar_txtArea();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         Eliminar_Oficina eo = new Eliminar_Oficina(this, true);
         eo.setVisible(true);
+        Actualizar_txtArea();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
@@ -192,4 +198,9 @@ public class CRUD_Oficina extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtArea_Oficina;
     // End of variables declaration//GEN-END:variables
+    private void Actualizar_txtArea(){
+        Cargar_Info_Cod cic = new Cargar_Info_Cod();
+        cic.Info_CRUD(txtArea_Oficina, "oficina");
+    }
+
 }

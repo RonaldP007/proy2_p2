@@ -5,6 +5,8 @@
  */
 package vista.Marcas;
 
+import codigo.Cargar_Info_Cod;
+
 /**
  *
  * @author Enrique
@@ -17,6 +19,7 @@ public class CRUD_Marcas extends javax.swing.JDialog {
     public CRUD_Marcas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        Actualizar_txtArea();
     }
 
     /**
@@ -123,16 +126,19 @@ public class CRUD_Marcas extends javax.swing.JDialog {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         Agregar_Marca am = new Agregar_Marca(this, true);
         am.setVisible(true);
+        Actualizar_txtArea();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         Modificar_Marca mm = new Modificar_Marca(this, true);
         mm.setVisible(true);
+        Actualizar_txtArea();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         Eliminar_Marca em = new Eliminar_Marca(this, true);
         em.setVisible(true);
+        Actualizar_txtArea();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
@@ -192,4 +198,9 @@ public class CRUD_Marcas extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtArea_Marcas;
     // End of variables declaration//GEN-END:variables
+    private void Actualizar_txtArea(){
+        Cargar_Info_Cod cic = new Cargar_Info_Cod();
+        cic.Info_CRUD(txtArea_Marcas, "marca");
+    }
+
 }

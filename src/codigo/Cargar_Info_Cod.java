@@ -9,6 +9,7 @@ import Objetos.Vehiculo;
 import base_datos.Cargar_Info_DB;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -39,7 +40,7 @@ public class Cargar_Info_Cod {
         return vehiculo;
     }
 
-    public String nombre_marca_modelo_estilo(int id,String nombre) {
+    public String nombre_marca_modelo_estilo(int id, String nombre) {
         Cargar_Info_DB ci_db = new Cargar_Info_DB();
         String nombres = ci_db.Info_Nombre_marca_modelo_estilo(id, nombre);
         return nombres;
@@ -50,5 +51,14 @@ public class Cargar_Info_Cod {
         int id_numero = ci_db.Info_Id_marca_modelo_estilo(nombre_columna, nombre);
         return id_numero;
     }
-    
+
+    public void Info_CRUD(JTextArea txtArea, String nombre) {
+        Cargar_Info_DB ci_db = new Cargar_Info_DB();
+        ArrayList<String[]> informacion = ci_db.Info_CRUDS("nombre_" + nombre, nombre);
+        String info = "";
+        for (int i = 0; i < informacion.size(); i++) {
+            info += informacion.get(i)[0] + '\t' + informacion.get(i)[1] + System.lineSeparator();
+        }
+        txtArea.setText(info);
+    }
 }

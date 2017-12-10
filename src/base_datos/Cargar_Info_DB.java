@@ -97,12 +97,33 @@ public class Cargar_Info_DB {
             st = conn.createStatement();
             rs = st.executeQuery(query);
             rs.next();
-            nombre_tipo = rs.getString("nombre_"+nombre);
+            nombre_tipo = rs.getString("nombre_" + nombre);
             conn.close();
         } catch (SQLException e) {
             nombre_tipo = "";
             e.printStackTrace();
         }
         return nombre_tipo;
+    }
+
+    public ArrayList<String[]> Info_CRUDS(String nombre_columna, String nombre) {
+        ArrayList<String[]> info = new ArrayList<>();
+        try {
+            conn = DriverManager.getConnection(jdbc, "postgres", pass);
+            query = "SELECT id_" + nombre + ", " + nombre_columna + " FROM " + nombre + 's' + ";";
+            st = conn.createStatement();
+            rs = st.executeQuery(query);
+            while (rs.next()) {
+                String[] informacion = new String[]{
+                    String.valueOf(rs.getInt("id_"+nombre)),
+                    rs.getString(nombre_columna)
+                };
+                info.add(informacion);
+            }
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return info;
     }
 }
