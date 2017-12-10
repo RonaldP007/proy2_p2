@@ -9,6 +9,7 @@ import Objetos.usuarios;
 import codigo.Registro_Usuario;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
+import vista.Vista_Admin;
 
 /**
  *
@@ -161,7 +162,9 @@ public class Login extends javax.swing.JFrame {
         if(usuario != null){
             boolean tipo_usuario = ru.Tipo_Usuario(usuario, clave);
             if(tipo_usuario){
-                // Interfaz Administrador
+                Vista_Admin va = new Vista_Admin();
+                va.setVisible(true);
+                this.dispose();
             }else{
                 Interfaz_Renta ir = new Interfaz_Renta(usuario);
                 ir.setVisible(true);
