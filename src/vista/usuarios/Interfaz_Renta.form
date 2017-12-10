@@ -67,16 +67,16 @@
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jComboBox2" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jc_hora_ret" min="-2" max="-2" attributes="0"/>
                                                   <Component id="jLabel5" min="-2" pref="31" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                                   <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="jComboBox3" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jc_min_ret" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                      <Component id="jComboBox4" min="-2" pref="151" max="-2" attributes="0"/>
+                                                      <Component id="jc_ofi_ret" min="-2" pref="151" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>
@@ -97,16 +97,16 @@
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jComboBox5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jc_hora_dev" alignment="0" min="-2" max="-2" attributes="0"/>
                                                   <Component id="jLabel8" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
                                                   <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="jComboBox6" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jc_min_dev" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                      <Component id="jComboBox7" min="-2" pref="151" max="-2" attributes="0"/>
+                                                      <Component id="jc_ofi_dev" min="-2" pref="151" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>
@@ -127,18 +127,18 @@
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jCheckBox2" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jCheckBox3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel14" alignment="0" min="-2" pref="274" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="btnAlq" min="-2" pref="255" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="chkps" min="-2" max="-2" attributes="0"/>
+                                  <Component id="chkboo" min="-2" max="-2" attributes="0"/>
+                                  <Component id="chkbb" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel14" alignment="0" min="-2" pref="274" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -182,9 +182,9 @@
                               </Group>
                               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jComboBox2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jComboBox3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jComboBox4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jc_hora_ret" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jc_min_ret" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jc_ofi_ret" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="jDateChooser1" min="-2" max="-2" attributes="0"/>
@@ -193,11 +193,11 @@
                   <Group type="102" attributes="0">
                       <Component id="jLabel14" min="-2" pref="29" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+                      <Component id="chkps" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jCheckBox2" min="-2" max="-2" attributes="0"/>
+                      <Component id="chkboo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jCheckBox3" min="-2" max="-2" attributes="0"/>
+                      <Component id="chkbb" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -226,9 +226,9 @@
                               </Group>
                               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jComboBox5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jComboBox6" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jComboBox7" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jc_hora_dev" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jc_min_dev" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jc_ofi_dev" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                           </Group>
@@ -289,6 +289,9 @@
       </Properties>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
+      <Properties>
+        <Property name="dateFormatString" type="java.lang.String" value="yyyy/MM/dd"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
@@ -310,7 +313,7 @@
         <Property name="text" type="java.lang.String" value="Minutos"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox2">
+    <Component class="javax.swing.JComboBox" name="jc_hora_ret">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="25">
@@ -346,7 +349,7 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox3">
+    <Component class="javax.swing.JComboBox" name="jc_min_ret">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="60">
@@ -417,7 +420,7 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox4">
+    <Component class="javax.swing.JComboBox" name="jc_ofi_ret">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
@@ -442,7 +445,7 @@
         <Property name="text" type="java.lang.String" value="Minutos"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox5">
+    <Component class="javax.swing.JComboBox" name="jc_hora_dev">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="25">
@@ -478,7 +481,7 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox6">
+    <Component class="javax.swing.JComboBox" name="jc_min_dev">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="60">
@@ -549,7 +552,7 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox7">
+    <Component class="javax.swing.JComboBox" name="jc_ofi_dev">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
@@ -570,6 +573,9 @@
       </Properties>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser2">
+      <Properties>
+        <Property name="dateFormatString" type="java.lang.String" value="yyyy/MM/dd"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel12">
       <Properties>
@@ -586,17 +592,17 @@
         <Property name="text" type="java.lang.String" value="Seleccione articulos adiciones si lo desea"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBox1">
+    <Component class="javax.swing.JCheckBox" name="chkps">
       <Properties>
         <Property name="text" type="java.lang.String" value="GPS ($9)"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBox2">
+    <Component class="javax.swing.JCheckBox" name="chkboo">
       <Properties>
         <Property name="text" type="java.lang.String" value="Booster($11)"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBox3">
+    <Component class="javax.swing.JCheckBox" name="chkbb">
       <Properties>
         <Property name="text" type="java.lang.String" value="Silla Bebe($3)"/>
       </Properties>
@@ -605,6 +611,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Alquilar Vehiculo"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAlqActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

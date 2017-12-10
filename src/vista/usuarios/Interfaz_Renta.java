@@ -8,6 +8,8 @@ package vista.usuarios;
 import Objetos.usuarios;
 import codigo.Rentas_Veh;
 import codigo.VerTabla;
+import java.util.Date;
+
 
 /**
  *
@@ -25,6 +27,9 @@ public class Interfaz_Renta extends javax.swing.JFrame {
         v.visualizar_tabla(tabla);
         carg_placas_combo();
         carg_oficinas_combo();
+       // int cedula = usuario.getCedula();
+       // String nombre_usu = usuario.getNombre();
+         
     }
 
     /**
@@ -46,24 +51,24 @@ public class Interfaz_Renta extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        jc_hora_ret = new javax.swing.JComboBox<>();
+        jc_min_ret = new javax.swing.JComboBox<>();
+        jc_ofi_ret = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jComboBox5 = new javax.swing.JComboBox<>();
-        jComboBox6 = new javax.swing.JComboBox<>();
-        jComboBox7 = new javax.swing.JComboBox<>();
+        jc_hora_dev = new javax.swing.JComboBox<>();
+        jc_min_dev = new javax.swing.JComboBox<>();
+        jc_ofi_dev = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
+        chkps = new javax.swing.JCheckBox();
+        chkboo = new javax.swing.JCheckBox();
+        chkbb = new javax.swing.JCheckBox();
         btnAlq = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -91,6 +96,8 @@ public class Interfaz_Renta extends javax.swing.JFrame {
 
         jLabel2.setText("Seleccione  fecha, hora y oficina de retiro ");
 
+        jDateChooser1.setDateFormatString("yyyy/MM/dd");
+
         jLabel3.setText("Fecha");
 
         jLabel4.setText("Hora");
@@ -99,9 +106,9 @@ public class Interfaz_Renta extends javax.swing.JFrame {
 
         jLabel6.setText("Minutos");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", " " }));
+        jc_hora_ret.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", " " }));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        jc_min_ret.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
 
         jLabel7.setText("Oficina");
 
@@ -109,13 +116,15 @@ public class Interfaz_Renta extends javax.swing.JFrame {
 
         jLabel9.setText("Minutos");
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", " " }));
+        jc_hora_dev.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", " " }));
 
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        jc_min_dev.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
 
         jLabel10.setText("Seleccione  fecha, hora y oficina de la devolucion");
 
         jLabel11.setText("Oficina");
+
+        jDateChooser2.setDateFormatString("yyyy/MM/dd");
 
         jLabel12.setText("Fecha");
 
@@ -123,13 +132,18 @@ public class Interfaz_Renta extends javax.swing.JFrame {
 
         jLabel14.setText("Seleccione articulos adiciones si lo desea");
 
-        jCheckBox1.setText("GPS ($9)");
+        chkps.setText("GPS ($9)");
 
-        jCheckBox2.setText("Booster($11)");
+        chkboo.setText("Booster($11)");
 
-        jCheckBox3.setText("Silla Bebe($3)");
+        chkbb.setText("Silla Bebe($3)");
 
         btnAlq.setText("Alquilar Vehiculo");
+        btnAlq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlqActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Cerrar Sesion");
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -172,15 +186,15 @@ public class Interfaz_Renta extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jc_hora_ret, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(jLabel6)
                                                     .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jc_min_ret, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addGap(18, 18, 18)
-                                                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                        .addComponent(jc_ofi_ret, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,15 +208,15 @@ public class Interfaz_Renta extends javax.swing.JFrame {
                                                 .addComponent(jLabel11))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jc_hora_dev, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(jLabel9)
                                                     .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jc_min_dev, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addGap(18, 18, 18)
-                                                        .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                                        .addComponent(jc_ofi_dev, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(239, 239, 239)
@@ -214,15 +228,15 @@ public class Interfaz_Renta extends javax.swing.JFrame {
                                 .addGap(46, 46, 46)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(117, 117, 117)
+                                .addComponent(btnAlq, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGap(33, 33, 33)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBox1)
-                                    .addComponent(jCheckBox2)
-                                    .addComponent(jCheckBox3)
-                                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(117, 117, 117)
-                                .addComponent(btnAlq, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(chkps)
+                                    .addComponent(chkboo)
+                                    .addComponent(chkbb)
+                                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(183, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -255,18 +269,18 @@ public class Interfaz_Renta extends javax.swing.JFrame {
                                     .addComponent(jLabel6))
                                 .addGap(12, 12, 12)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jc_hora_ret, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jc_min_ret, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jc_ofi_ret, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox1)
+                        .addComponent(chkps)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox2)
+                        .addComponent(chkboo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox3)))
+                        .addComponent(chkbb)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,9 +302,9 @@ public class Interfaz_Renta extends javax.swing.JFrame {
                                     .addComponent(jLabel9))
                                 .addGap(12, 12, 12)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jc_hora_dev, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jc_min_dev, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jc_ofi_dev, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(5, 5, 5))
                             .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
@@ -312,6 +326,37 @@ public class Interfaz_Renta extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jMenu1MouseClicked
 
+    private void btnAlqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlqActionPerformed
+        // TODO add your handling code here:
+        String placa = (String) jComboBox1.getSelectedItem();
+        Date fecha_ret = jDateChooser1.getDate();
+        String oficina_ret = (String) jc_ofi_ret.getSelectedItem();
+        String[] ofi_ret = oficina_ret.split(",");
+        String Hora_ret = (String) jc_hora_ret.getSelectedItem() +":"+ (String) jc_min_ret.getSelectedItem() + ":00";
+        Date fecha_dev = jDateChooser2.getDate();
+        String oficina_dev = (String) jc_ofi_dev.getSelectedItem();
+        String[] ofi_dev = oficina_dev.split(",");
+        String Hora_dev = (String) jc_hora_dev.getSelectedItem() +":"+ (String) jc_min_dev.getSelectedItem() + ":00";
+        Rentas_Veh inf = new Rentas_Veh();
+        int precio = inf.precio_vehic(placa);
+        int adicionales = 0;
+        if(chkps.isSelected()){
+            adicionales = adicionales + 9;
+        }
+        if(chkboo.isSelected()){
+            adicionales = adicionales + 11;
+        }
+        if(chkbb.isSelected()){
+            adicionales = adicionales + 3;
+        }
+        int precio_total_dia = precio + adicionales;
+        int dias=(int) ((fecha_dev.getTime()-fecha_ret.getTime())/86400000);
+        int precio_final = precio_total_dia * dias;
+        int cedula1 = 1;
+        String nombre1 = "qwe";
+        boolean guard = inf.guardar_rentas(placa,cedula1 ,nombre1, Integer.parseInt(ofi_dev[0]),Integer.parseInt(ofi_ret[0]),fecha_dev, fecha_ret,precio_final , Hora_dev, Hora_ret);
+    }//GEN-LAST:event_btnAlqActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -322,16 +367,10 @@ public class Interfaz_Renta extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlq;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
+    private javax.swing.JCheckBox chkbb;
+    private javax.swing.JCheckBox chkboo;
+    private javax.swing.JCheckBox chkps;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
-    private javax.swing.JComboBox<String> jComboBox6;
-    private javax.swing.JComboBox<String> jComboBox7;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
@@ -352,6 +391,12 @@ public class Interfaz_Renta extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> jc_hora_dev;
+    private javax.swing.JComboBox<String> jc_hora_ret;
+    private javax.swing.JComboBox<String> jc_min_dev;
+    private javax.swing.JComboBox<String> jc_min_ret;
+    private javax.swing.JComboBox<String> jc_ofi_dev;
+    private javax.swing.JComboBox<String> jc_ofi_ret;
     private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
 
@@ -359,9 +404,12 @@ public class Interfaz_Renta extends javax.swing.JFrame {
         Rentas_Veh rv = new Rentas_Veh();
         rv.Info_placas_Combo(jComboBox1);
     }
-     public void carg_oficinas_combo() {
+
+    public void carg_oficinas_combo() {
         Rentas_Veh rv = new Rentas_Veh();
-        rv.Info_Oficinas_Combo(jComboBox4);
-        rv.Info_Oficinas_Combo(jComboBox7);
+        rv.Info_Oficinas_Combo(jc_ofi_ret);
+        rv.Info_Oficinas_Combo(jc_ofi_dev);
+
     }
+
 }
