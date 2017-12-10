@@ -5,6 +5,9 @@
  */
 package vista.Vehiculo;
 
+import codigo.CRUD_Codigo_Eliminar;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Enrique
@@ -30,8 +33,8 @@ public class Eliminar_Vehiculo extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtPlaca_le = new javax.swing.JTextField();
+        txtPlaca_num = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
 
@@ -39,32 +42,37 @@ public class Eliminar_Vehiculo extends javax.swing.JDialog {
 
         jLabel1.setText("Ingrese la placa del vehiculo:");
 
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtPlaca_le.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField1KeyTyped(evt);
+                txtPlaca_leKeyTyped(evt);
             }
         });
 
-        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtPlaca_num.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField2KeyTyped(evt);
+                txtPlaca_numKeyTyped(evt);
             }
         });
 
         jLabel2.setText("-");
 
         btnEliminar.setText("Eliminar Vehiculo");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jTextField1)
+                .addComponent(txtPlaca_le)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtPlaca_num, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -81,8 +89,8 @@ public class Eliminar_Vehiculo extends javax.swing.JDialog {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPlaca_le, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPlaca_num, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnEliminar)
@@ -109,19 +117,41 @@ public class Eliminar_Vehiculo extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+    private void txtPlaca_numKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPlaca_numKeyTyped
         char c = evt.getKeyChar();
-        if (c < '0' || c > '9' && c != '\b') {
+        String placa = txtPlaca_num.getText();
+        if (placa.length() <= 2) {
+            if (c < '0' || c > '9' && c != '\b') {
+                evt.consume();
+            }
+        } else {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField2KeyTyped
+    }//GEN-LAST:event_txtPlaca_numKeyTyped
 
-    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+    private void txtPlaca_leKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPlaca_leKeyTyped
         char c = evt.getKeyChar();
-        if(!Character.isLetter(c)){
+        String placa = txtPlaca_le.getText();
+        if (placa.length() <= 2) {
+            if (!Character.isLetter(c)) {
+                evt.consume();
+            }
+        } else {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField1KeyTyped
+    }//GEN-LAST:event_txtPlaca_leKeyTyped
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        if(!txtPlaca_le.getText().equals("") && !txtPlaca_num.getText().equals("")){
+            CRUD_Codigo_Eliminar crud_ec = new CRUD_Codigo_Eliminar();
+            boolean eliminado = crud_ec.Eliminar_Vehiculo_Cod(txtPlaca_le.getText()+'-'+txtPlaca_num.getText());
+            if(eliminado){
+                JOptionPane.showMessageDialog(null, "Se elimino el vehiculo correctamente");
+            }else{
+                JOptionPane.showMessageDialog(null, "No se pudo eliminar el vehiculo");
+            }
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,7 +200,7 @@ public class Eliminar_Vehiculo extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField txtPlaca_le;
+    private javax.swing.JTextField txtPlaca_num;
     // End of variables declaration//GEN-END:variables
 }

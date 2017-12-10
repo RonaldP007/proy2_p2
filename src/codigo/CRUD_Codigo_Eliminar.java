@@ -36,5 +36,11 @@ public class CRUD_Codigo_Eliminar {
         boolean eliminado = crud_dbe.Eliminar_Oficina_DB(Integer.parseInt(oficina));
         return eliminado;
     }
+
+    public boolean Eliminar_Vehiculo_Cod(String placa) {
+        CRUD_DB_Eliminar crud_dbe = new CRUD_DB_Eliminar();
+        boolean eliminado = crud_dbe.Eliminar_Vehiculo_DB(placa);
+        return eliminado;
+    }
     
 }

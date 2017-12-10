@@ -85,5 +85,21 @@ public class CRUD_DB_Eliminar {
         }
         return eliminado;
     }
+
+    public boolean Eliminar_Vehiculo_DB(String placa) {
+        boolean eliminado;
+        try {
+            conn = DriverManager.getConnection(jdbc, "postgres", pass);
+            query = "DELETE FROM vehiculos WHERE placa = ?;";
+            pst = conn.prepareStatement(query);
+            pst.setString(1, placa);
+            pst.executeUpdate();
+            conn.close();
+            eliminado = true;
+        } catch (SQLException ex) {
+            eliminado = false;
+        }
+        return eliminado;
+    }
     
 }
