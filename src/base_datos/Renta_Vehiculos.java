@@ -28,13 +28,11 @@ public class Renta_Vehiculos {
     static String jdbc = "jdbc:postgresql://localhost:5432/programacion";
     static String pass = "RPG007rpg";
 
-    public ResultSet visualizar() {
+    public ResultSet visualizar(String sql) {
 
         try {
             conn = DriverManager.getConnection(jdbc, "postgres", pass);
-            query = "SELECT v.placa,ma.nombre_marca,mod.nombre_modelo,est.nombre_estilo,v.transmision,year,v.precio,v.foto FROM vehiculos AS v"
-                   + " INNER JOIN marcas AS ma ON v.fk_modelo = ma.id_marca" +" INNER JOIN modelos AS mod ON v.fk_modelo = mod.id_modelo" 
-                    +" INNER JOIN estilos AS est ON v.fk_estilo = est.id_estilo"+" WHERE v.estado = true ORDER BY v.placa";
+            query = "";
             st = conn.createStatement();
             PreparedStatement ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
