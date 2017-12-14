@@ -137,5 +137,21 @@ public class CRUD_DB_Modificar {
         }
         return modificado;
     }
+    
+     //This method modify the cars state in the database
+     public boolean Modificar_Vehiculo_Estado(String placa) {
+        boolean modificado;
+        try {
+            conn = DriverManager.getConnection(jdbc, "postgres", pass);
+            query = "UPDATE vehiculos SET estado = false WHERE placa = '"+placa+"';";
+            pst = conn.prepareStatement(query);
+            pst.executeUpdate();
+            conn.close();
+            modificado = true;
+        } catch (SQLException ex) {
+            modificado = false;
+        }
+        return modificado;
+    }
 
 }

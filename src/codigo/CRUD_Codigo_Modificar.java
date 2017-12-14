@@ -55,5 +55,12 @@ public class CRUD_Codigo_Modificar {
         boolean modificado = crud_db_mod.Modificar_Vehiculo_Sin_Foto(vehiculo);
         return modificado;
     }
+    
+    //This method send the car plate for another method and return a boolean
+    public boolean Modificar_Vehiculo_Estado(String placa){
+       CRUD_DB_Modificar crud_db_mod = new CRUD_DB_Modificar();
+       boolean modificado = crud_db_mod.Modificar_Vehiculo_Estado(placa);
+       return modificado;    
+    }
 
 }
