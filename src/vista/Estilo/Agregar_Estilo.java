@@ -20,6 +20,7 @@ public class Agregar_Estilo extends javax.swing.JDialog {
     public Agregar_Estilo(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

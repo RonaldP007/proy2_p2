@@ -21,6 +21,7 @@ public class Agregar_Marca extends javax.swing.JDialog {
     public Agregar_Marca(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

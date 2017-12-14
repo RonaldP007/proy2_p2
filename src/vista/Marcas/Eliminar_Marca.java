@@ -21,6 +21,7 @@ public class Eliminar_Marca extends javax.swing.JDialog {
     public Eliminar_Marca(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

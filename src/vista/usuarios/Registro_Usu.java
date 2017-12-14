@@ -28,7 +28,7 @@ public class Registro_Usu extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-
+        
     }
 
     /**

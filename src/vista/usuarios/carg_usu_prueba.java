@@ -29,6 +29,7 @@ public class carg_usu_prueba extends javax.swing.JDialog {
     public carg_usu_prueba(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

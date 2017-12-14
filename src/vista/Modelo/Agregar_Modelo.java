@@ -22,6 +22,7 @@ public class Agregar_Modelo extends javax.swing.JDialog {
     public Agregar_Modelo(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

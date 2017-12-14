@@ -19,6 +19,7 @@ public class CRUD_Oficina extends javax.swing.JDialog {
     public CRUD_Oficina(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
         Actualizar_txtArea();
     }
 

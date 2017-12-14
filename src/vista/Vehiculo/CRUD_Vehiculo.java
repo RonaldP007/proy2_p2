@@ -17,6 +17,7 @@ public class CRUD_Vehiculo extends javax.swing.JDialog {
     public CRUD_Vehiculo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

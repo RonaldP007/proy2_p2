@@ -21,6 +21,7 @@ public class Agregar_Oficina extends javax.swing.JDialog {
     public Agregar_Oficina(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

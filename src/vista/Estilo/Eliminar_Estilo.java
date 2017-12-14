@@ -20,6 +20,7 @@ public class Eliminar_Estilo extends javax.swing.JDialog {
     public Eliminar_Estilo(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

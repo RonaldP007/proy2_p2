@@ -20,6 +20,7 @@ public class CRUD_Modelo extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         Actualizar_txtArea();
+        this.setLocationRelativeTo(null);
     }
 
     /**

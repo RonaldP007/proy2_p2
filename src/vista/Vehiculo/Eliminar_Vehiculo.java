@@ -20,6 +20,7 @@ public class Eliminar_Vehiculo extends javax.swing.JDialog {
     public Eliminar_Vehiculo(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

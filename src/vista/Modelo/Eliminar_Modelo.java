@@ -22,6 +22,7 @@ public class Eliminar_Modelo extends javax.swing.JDialog {
     public Eliminar_Modelo(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

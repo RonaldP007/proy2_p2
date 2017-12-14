@@ -15,6 +15,7 @@ import vista.Modelo.CRUD_Modelo;
 import vista.Oficina.CRUD_Oficina;
 import vista.Reportes.Rep1;
 import vista.Reportes.Rep2;
+import vista.usuarios.Login;
 
 /**
  *
@@ -60,6 +61,11 @@ public class Vista_Admin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jMenu2.setText("Cerrar Sesion");
+        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu2MouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Opciones");
@@ -191,6 +197,12 @@ public class Vista_Admin extends javax.swing.JFrame {
         Reportes_Cod rep = new Reportes_Cod();
         rep.Rep_3();
     }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+        Login lo = new Login();
+        lo.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenu2MouseClicked
 
     /**
      * @param args the command line arguments

@@ -27,6 +27,7 @@ public class Agregar_Vehiculo extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         Cargar_Combos();
+        this.setLocationRelativeTo(null);
     }
 
     /**

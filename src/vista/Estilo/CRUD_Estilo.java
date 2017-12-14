@@ -23,6 +23,7 @@ public class CRUD_Estilo extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         Actualizar_txtArea();
+        this.setLocationRelativeTo(null);
     }
 
     /**

@@ -20,6 +20,7 @@ public class Modificar_Estilo extends javax.swing.JDialog {
     public Modificar_Estilo(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

@@ -22,6 +22,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -157,18 +158,25 @@ public class Login extends javax.swing.JFrame {
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
         Registro_Usuario ru = new Registro_Usuario();
-        String clave = new String(jpsContra.getPassword());
-        usuarios usuario = ru.Verificar_Usuario(txtUsuario.getText());
-        if (usuario != null) {
-            boolean tipo_usuario = ru.Tipo_Usuario(usuario, clave);
-            if (usuario.getTipo() == true && tipo_usuario == true) {
-                Vista_Admin va = new Vista_Admin();
-                va.setVisible(true);
-                this.dispose();
-            } else if (usuario.getTipo() == false && tipo_usuario == true) {
-                Interfaz_Renta ir = new Interfaz_Renta(usuario);
-                ir.setVisible(true);
-                this.dispose();
+        String clave = new String();
+
+        if (!txtUsuario.getText().equals("") && !jpsContra.getPassword().equals("")) {
+            usuarios usuario = ru.Verificar_Usuario(txtUsuario.getText());
+            if (usuario != null) {
+                boolean tipo_usuario = ru.Tipo_Usuario(usuario, clave);
+                if (usuario.getTipo() == true && tipo_usuario == true) {
+                    Vista_Admin va = new Vista_Admin();
+                    va.setVisible(true);
+                    this.dispose();
+                } else if (usuario.getTipo() == false && tipo_usuario == true) {
+                    Interfaz_Renta ir = new Interfaz_Renta(usuario);
+                    ir.setVisible(true);
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta");
+                    txtUsuario.setText("");
+                    jpsContra.setText("");
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta");
                 txtUsuario.setText("");

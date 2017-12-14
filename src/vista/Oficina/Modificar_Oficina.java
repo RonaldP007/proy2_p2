@@ -20,6 +20,7 @@ public class Modificar_Oficina extends javax.swing.JDialog {
     public Modificar_Oficina(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
