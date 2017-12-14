@@ -28,7 +28,7 @@ public class Interfaz_Renta extends javax.swing.JFrame {
     String tempsql;
     private String marca, modelo, estilo, year, precio, transmision;
     private VerTabla v;
-    
+
     int cedula;
     String nombre_usu;
 
@@ -36,7 +36,7 @@ public class Interfaz_Renta extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         v = new VerTabla();
-        v.visualizar_tabla(tabla,sql);
+        v.visualizar_tabla(tabla, sql);
         carg_placas_combo();
         carg_oficinas_combo();
         Cargar_Info_Cod cic = new Cargar_Info_Cod();
@@ -527,21 +527,31 @@ public class Interfaz_Renta extends javax.swing.JFrame {
         if (chkbb.isSelected()) {
             adicionales = adicionales + 3;
         }
-        int precio_total_dia = precio + adicionales;
-        int dias = (int) ((fecha_dev.getTime() - fecha_ret.getTime()) / 86400000);
-        int precio_final = precio_total_dia * dias;
-        //int cedula1 = 1;
-        //String nombre1 = "qwe";
-        boolean guard = inf.guardar_rentas(placa, cedula, nombre_usu, Integer.parseInt(ofi_dev[0]), Integer.parseInt(ofi_ret[0]), fecha_dev, fecha_ret, precio_final, Hora_dev, Hora_ret);
-        if (guard) {
-            CRUD_Codigo_Modificar cm = new CRUD_Codigo_Modificar();
-            cm.Modificar_Vehiculo_Estado(placa);
-            JOptionPane.showMessageDialog(null, "Gracias por el alquiler");
-            v.visualizar_tabla(tabla,sql);
-            jComboBox1.removeAllItems();
-            carg_placas_combo();
+        Date f1 = jDateChooser1.getDate();
+        Date f2 = jDateChooser2.getDate();
+        if (f1 == null || f2 == null) {
+            JOptionPane.showMessageDialog(null, "Seleccione las 2 fechas");
         } else {
-            JOptionPane.showMessageDialog(null, "No se pudo realizar el alquiler");
+            if (f1.after(f2)) {
+                JOptionPane.showMessageDialog(null, "Respete el orden de las fechas");
+            } else {
+                int precio_total_dia = precio + adicionales;
+                int dias = (int) ((fecha_dev.getTime() - fecha_ret.getTime()) / 86400000);
+                int precio_final = precio_total_dia * dias;
+                //int cedula1 = 1;
+                //String nombre1 = "qwe";
+                boolean guard = inf.guardar_rentas(placa, cedula, nombre_usu, Integer.parseInt(ofi_dev[0]), Integer.parseInt(ofi_ret[0]), fecha_dev, fecha_ret, precio_final, Hora_dev, Hora_ret);
+                if (guard) {
+                    CRUD_Codigo_Modificar cm = new CRUD_Codigo_Modificar();
+                    cm.Modificar_Vehiculo_Estado(placa);
+                    JOptionPane.showMessageDialog(null, "Gracias por el alquiler");
+                    v.visualizar_tabla(tabla, sql);
+                    jComboBox1.removeAllItems();
+                    carg_placas_combo();
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se pudo realizar el alquiler");
+                }
+            }
         }
     }//GEN-LAST:event_btnAlqActionPerformed
 
@@ -630,15 +640,14 @@ public class Interfaz_Renta extends javax.swing.JFrame {
         } else {
             transmision = " AND v.transmision = " + true + " ";
         }
-        if(!txtYear.getText().equals("")){
+        if (!txtYear.getText().equals("")) {
             year = " AND v.fabricacion = " + Integer.parseInt(txtYear.getText()) + " ";
-        }else{
+        } else {
             year = " AND v.fabricacion = " + 2017 + " ";
         }
-        if(!txtPrecio.getText().equals("")){
+        if (!txtPrecio.getText().equals("")) {
             precio = " AND v.precio = " + Integer.parseInt(txtPrecio.getText()) + " ";
-        }
-        else{
+        } else {
             year = " AND v.precio = " + 2015 + " ";
         }
         tempsql = sql;
@@ -660,7 +669,7 @@ public class Interfaz_Renta extends javax.swing.JFrame {
         if (jCheckBox6.isSelected()) {
             tempsql += precio;
         }
-        v.visualizar_tabla(tabla, tempsql+" ORDER BY v.placa;");
+        v.visualizar_tabla(tabla, tempsql + " ORDER BY v.placa;");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
