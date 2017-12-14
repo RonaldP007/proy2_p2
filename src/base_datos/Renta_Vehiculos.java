@@ -40,7 +40,7 @@ public class Renta_Vehiculos {
         }
         return rs;
     }
-
+    //This method return the license plate of the database where car is available
     public ArrayList<String> Info_placas() {
         ArrayList<String> info = new ArrayList<>();
         try {
