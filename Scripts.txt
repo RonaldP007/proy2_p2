@@ -1,0 +1,126 @@
+--LLAMAR LA BASE DE DATOS programacion
+
+
+
+CREATE TABLE public.usuarios
+(
+    cedula integer NOT NULL,
+    nombre character varying(50),
+    telefono integer,
+    direccion character varying,
+    foto_usuario bytea,
+    "contraseña" character varying(32),
+    tipo boolean,
+    CONSTRAINT usuarios_pkey PRIMARY KEY (cedula)
+);
+CREATE TABLE public.estilos
+(
+    id_estilo SERIAL NOT NULL,
+    nombre_estilo character varying(50),
+    CONSTRAINT estilos_pkey PRIMARY KEY (id_estilo),
+    CONSTRAINT estilos_nombre_estilo_key UNIQUE (nombre_estilo)
+);
+CREATE TABLE public.marcas
+(
+    id_marca SERIAL NOT NULL,
+    nombre_marca character varying(15),
+    CONSTRAINT marcas_pkey PRIMARY KEY (id_marca),
+    CONSTRAINT marcas_nombre_marca_key UNIQUE (nombre_marca)
+);
+
+CREATE TABLE public.oficinas
+(
+    id_oficina SERIAL NOT NULL,
+    nombre_oficina character varying,
+    CONSTRAINT oficinas_pkey PRIMARY KEY (id_oficina)
+);
+CREATE TABLE public.modelos
+(
+    id_modelo SERIAL NOT NULL,
+    nombre_modelo character varying,
+    CONSTRAINT modelos_pkey PRIMARY KEY (id_modelo),
+    CONSTRAINT modelos_nombre_modelo_key UNIQUE (nombre_modelo)
+);
+CREATE TABLE public.vehiculos
+(
+    placa character varying,
+    fk_marca integer,
+    fk_modelo integer,
+    fk_estilo integer,
+    transmision boolean,
+    fabricacion integer,
+    precio integer,
+    foto bytea,
+    estado boolean,
+    CONSTRAINT vehiculos_pkey PRIMARY KEY (placa),
+    CONSTRAINT vehiculos_fk_estilo_fkey FOREIGN KEY (fk_estilo)
+        REFERENCES public.estilos (id_estilo) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT vehiculos_fk_marca_fkey FOREIGN KEY (fk_marca)
+        REFERENCES public.marcas (id_marca) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT vehiculos_fk_modelo_fkey FOREIGN KEY (fk_modelo)
+        REFERENCES public.modelos (id_modelo) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+);
+CREATE TABLE public.alquiler_vehiculo
+(
+    id_renta SERIAL NOT NULL,
+    fk_placa character varying,
+    fk_cedula_usu integer,
+    nombre_usu character varying(45),
+    fk_oficina_ret integer,
+    fk_oficina_dev integer,
+    fecha_ret date,
+    fecha_dev date,
+    precio integer,
+    hora_ret character varying,
+    hora_dev character varying,
+    CONSTRAINT alquiler_vehiculo_pkey PRIMARY KEY (id_renta),
+    CONSTRAINT alquiler_vehiculo_fk_cedula_usu_fkey FOREIGN KEY (fk_cedula_usu)
+        REFERENCES public.usuarios (cedula) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT alquiler_vehiculo_fk_oficina_dev_fkey FOREIGN KEY (fk_oficina_dev)
+        REFERENCES public.oficinas (id_oficina) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT alquiler_vehiculo_fk_oficina_ret_fkey FOREIGN KEY (fk_oficina_ret)
+        REFERENCES public.oficinas (id_oficina) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT alquiler_vehiculo_fk_placa_fkey FOREIGN KEY (fk_placa)
+        REFERENCES public.vehiculos (placa) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+);
+
+INSERT INTO marcas(nombre_marca) VALUES('Hyundai');
+INSERT INTO marcas(nombre_marca) VALUES('Toyota');
+INSERT INTO marcas(nombre_marca) VALUES('Nissan');
+INSERT INTO marcas(nombre_marca) VALUES('Bugatti');
+INSERT INTO marcas(nombre_marca) VALUES('Koenigsegg');
+
+INSERT INTO estilos(nombre_estilo) VALUES('Sedan');
+INSERT INTO estilos(nombre_estilo) VALUES('Hatchback');
+INSERT INTO estilos(nombre_estilo) VALUES('Coupe');
+INSERT INTO estilos(nombre_estilo) VALUES('Deportivo');
+INSERT INTO estilos(nombre_estilo) VALUES('Familiar');
+
+INSERT INTO modelos(nombre_modelo) VALUES('Tucson');
+INSERT INTO modelos(nombre_modelo) VALUES('Tercel');
+INSERT INTO modelos(nombre_modelo) VALUES('Sentra');
+INSERT INTO modelos(nombre_modelo) VALUES('Agera');
+INSERT INTO modelos(nombre_modelo) VALUES('Veyron');
+
+INSERT INTO oficinas(nombre_oficina) VALUES('San Carlos');
+INSERT INTO oficinas(nombre_oficina) VALUES('San Jose');
+INSERT INTO oficinas(nombre_oficina) VALUES('San Ramon');
+INSERT INTO oficinas(nombre_oficina) VALUES('Golfito');
+INSERT INTO oficinas(nombre_oficina) VALUES('Nicoya');
+
+INSERT INTO usuarios VALUES(1,'Admin',8888,'San Martin',null,MD5('admin'));
+INSERT INTO usuarios VALUES(2,'Usuario',8888,'Cedral',null,MD5('usuario'));
