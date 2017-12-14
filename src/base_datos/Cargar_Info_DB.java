@@ -85,6 +85,31 @@ public class Cargar_Info_DB {
         }
         return vehiculo;
     }
+    //this method return a arraylist of objects car
+    public ArrayList<Vehiculo> Vehiculo() {
+        ArrayList<Vehiculo> lista = new ArrayList<>();
+        try {
+            conn = DriverManager.getConnection(jdbc, "postgres", pass);
+            query = "SELECT ve.placa,ma.id_marca,mo.id_modelo,es.id_estilo,ve.transmision,ve.fabricacion,ve.precio,ve.estado FROM vehiculos AS ve INNER JOIN marcas AS ma "
+                    + "ON ma.id_marca = ve.fk_marca INNER JOIN modelos AS mo ON mo.id_modelo = ve.fk_modelo INNER JOIN estilos AS es ON es.id_estilo = ve.fk_estilo ORDER BY ve.placa;";
+            st = conn.createStatement();
+            rs = st.executeQuery(query);
+            while(rs.next()){
+            Vehiculo vehiculo = new Vehiculo(rs.getString("placa"), rs.getInt("id_marca"),
+                    rs.getInt("id_modelo"), rs.getInt("id_estilo"), rs.getBoolean("transmision"),
+                    rs.getInt("fabricacion"), rs.getInt("precio"), 0, null,
+                    null, rs.getBoolean("estado"));
+            lista.add(vehiculo);
+            }
+            rs.next();
+            
+            conn.close();
+        } catch (SQLException e) {
+            lista = null;
+            e.printStackTrace();
+        }
+        return lista;
+    }
     //This method return the String of the models,brands or styles
     public String Info_Nombre_marca_modelo_estilo(int id, String nombre) {
         String nombre_tipo;

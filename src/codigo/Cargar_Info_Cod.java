@@ -61,4 +61,32 @@ public class Cargar_Info_Cod {
         }
         txtArea.setText(info);
     }
+    public void Info_CRUD_Vehiculo(JTextArea txtArea) {
+        Cargar_Info_DB ci_db = new Cargar_Info_DB();
+        ArrayList<Vehiculo> informacion = ci_db.Vehiculo();
+        String info = "";
+        for (int i = 0; i < informacion.size(); i++) {
+            String transmision,estado;
+            String placa = informacion.get(i).getPlaca();
+            String marca = nombre_marca_modelo_estilo(informacion.get(i).getMarca(), "marca");
+            String modelo = nombre_marca_modelo_estilo(informacion.get(i).getModelo(), "modelo");
+            String estilo = nombre_marca_modelo_estilo(informacion.get(i).getEstilo(), "estilo");
+            if(informacion.get(i).getTransmision()){
+                transmision = "Automatico";
+            }else{
+                transmision = "Manual";
+            }
+            String fabricacion = String.valueOf(informacion.get(i).getFabricacion());
+            String precio = String.valueOf(informacion.get(i).getPrecio_dia());
+            if(informacion.get(i).getEstado()){
+                estado = "Disponible";
+            }else{
+                estado = "Ocupado";
+            }
+            info += placa + '\t' + marca+'\t' + modelo+'\t' +estilo+'\t'+transmision +'\t'+
+                    fabricacion+ '\t' + precio + '\t' +estado
+                    + System.lineSeparator();
+        }
+        txtArea.setText(info);
+    }
 }

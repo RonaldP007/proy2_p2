@@ -5,6 +5,8 @@
  */
 package vista.Vehiculo;
 
+import codigo.Cargar_Info_Cod;
+
 /**
  *
  * @author Enrique
@@ -18,6 +20,7 @@ public class CRUD_Vehiculo extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        Actualizar_txtArea();
     }
 
     /**
@@ -52,21 +55,21 @@ public class CRUD_Vehiculo extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 930, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jMenu1.setText("Regresar");
-        jMenu1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jMenu1KeyTyped(evt);
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
             }
         });
         jMenuBar1.add(jMenu1);
@@ -74,12 +77,27 @@ public class CRUD_Vehiculo extends javax.swing.JDialog {
         jMenu2.setText("Opciones");
 
         jMenuItem1.setText("Agregar Vehiculo");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem1);
 
         jMenuItem2.setText("Modificar Vehiculo");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem2);
 
         jMenuItem3.setText("Eliminar Vehiculo");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem3);
 
         jMenuBar1.add(jMenu2);
@@ -106,9 +124,27 @@ public class CRUD_Vehiculo extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenu1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jMenu1KeyTyped
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        Agregar_Vehiculo av = new Agregar_Vehiculo(this, true);
+        av.setVisible(true);
+        Actualizar_txtArea();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        Modificar_Vehiculo mv = new Modificar_Vehiculo(this, true);
+        mv.setVisible(true);
+        Actualizar_txtArea();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        Eliminar_Vehiculo ev = new Eliminar_Vehiculo(this, true);
+        ev.setVisible(true);
+        Actualizar_txtArea();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
         this.dispose();
-    }//GEN-LAST:event_jMenu1KeyTyped
+    }//GEN-LAST:event_jMenu1MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
@@ -121,4 +157,9 @@ public class CRUD_Vehiculo extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtArea_Vehiculo;
     // End of variables declaration//GEN-END:variables
+
+    private void Actualizar_txtArea() {
+        Cargar_Info_Cod cic = new Cargar_Info_Cod();
+        cic.Info_CRUD_Vehiculo(txtArea_Vehiculo);
+    }
 }
