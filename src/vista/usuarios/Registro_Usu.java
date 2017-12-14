@@ -219,7 +219,7 @@ public class Registro_Usu extends javax.swing.JDialog {
 
         // TODO add your handling code here:
         Registro_Usuario ru = new Registro_Usuario();
-        System.out.println(fis+System.lineSeparator()+longitudBytes);
+        //System.out.println(fis+System.lineSeparator()+longitudBytes);
         boolean se_guardo = ru.Guardar_Usuario(Integer.parseInt(txtCedula.getText()), txtNombre.getText(), Integer.parseInt(txtTel.getText()), txtDir.getText(), fis, longitudBytes, jPass.getText());
         if (se_guardo == true) {
             JOptionPane.showMessageDialog(null, "Registro exitoso");

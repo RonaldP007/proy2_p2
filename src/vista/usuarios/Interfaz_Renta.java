@@ -27,6 +27,9 @@ public class Interfaz_Renta extends javax.swing.JFrame {
     String tempsql;
     private String marca, modelo, estilo, year, precio, transmision;
     private VerTabla v;
+    
+    int cedula;
+    String nombre_usu;
 
     public Interfaz_Renta(usuarios usuario) {
         initComponents();
@@ -43,8 +46,8 @@ public class Interfaz_Renta extends javax.swing.JFrame {
         jCheckBox4.setSelected(true);
         jCheckBox5.setSelected(true);
         jCheckBox6.setSelected(true);
-        // int cedula = usuario.getCedula();
-        // String nombre_usu = usuario.getNombre();
+        cedula = usuario.getCedula();
+        nombre_usu = usuario.getNombre();
 
     }
 
@@ -519,9 +522,9 @@ public class Interfaz_Renta extends javax.swing.JFrame {
         int precio_total_dia = precio + adicionales;
         int dias = (int) ((fecha_dev.getTime() - fecha_ret.getTime()) / 86400000);
         int precio_final = precio_total_dia * dias;
-        int cedula1 = 1;
-        String nombre1 = "qwe";
-        boolean guard = inf.guardar_rentas(placa, cedula1, nombre1, Integer.parseInt(ofi_dev[0]), Integer.parseInt(ofi_ret[0]), fecha_dev, fecha_ret, precio_final, Hora_dev, Hora_ret);
+        //int cedula1 = 1;
+        //String nombre1 = "qwe";
+        boolean guard = inf.guardar_rentas(placa, cedula, nombre_usu, Integer.parseInt(ofi_dev[0]), Integer.parseInt(ofi_ret[0]), fecha_dev, fecha_ret, precio_final, Hora_dev, Hora_ret);
         if (guard) {
             JOptionPane.showMessageDialog(null, "Gracias por el alquiler");
         } else {
