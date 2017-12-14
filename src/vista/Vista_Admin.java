@@ -5,12 +5,16 @@
  */
 package vista;
 
+import codigo.Reportes_Cod;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import vista.Estilo.CRUD_Estilo;
 import vista.Marcas.CRUD_Marcas;
 import vista.Modelo.CRUD_Modelo;
 import vista.Oficina.CRUD_Oficina;
+import vista.Reportes.Rep1;
+import vista.Reportes.Rep2;
 
 /**
  *
@@ -97,12 +101,27 @@ public class Vista_Admin extends javax.swing.JFrame {
         jMenu4.setText("Reportes");
 
         jMenuItem5.setText("Reporte 1");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem5);
 
         jMenuItem6.setText("Reporte 2");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem6);
 
         jMenuItem7.setText("Reporte 3");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem7);
 
         jMenuBar1.add(jMenu4);
@@ -136,7 +155,7 @@ public class Vista_Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu1MouseClicked
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        CRUD_Marcas crud_marca= new CRUD_Marcas(this, true);
+        CRUD_Marcas crud_marca = new CRUD_Marcas(this, true);
         crud_marca.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -154,6 +173,24 @@ public class Vista_Admin extends javax.swing.JFrame {
         CRUD_Oficina crud_oficina = new CRUD_Oficina(this, true);
         crud_oficina.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        Rep1 rep1 = new Rep1(new JFrame(), true);
+        rep1.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        Rep2 rep2 = new Rep2(new JFrame(), true);
+        rep2.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+        Reportes_Cod rep = new Reportes_Cod();
+        rep.Rep_3();
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     /**
      * @param args the command line arguments
