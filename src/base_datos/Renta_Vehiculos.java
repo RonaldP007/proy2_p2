@@ -32,12 +32,11 @@ public class Renta_Vehiculos {
 
         try {
             conn = DriverManager.getConnection(jdbc, "postgres", pass);
-            query = "";
             st = conn.createStatement();
-            PreparedStatement ps = conn.prepareStatement(query);
+            PreparedStatement ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
-        } catch (Exception ex) {
-            System.out.println("Error de consulta");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
         return rs;
     }

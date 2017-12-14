@@ -6,11 +6,11 @@
 package vista.usuarios;
 
 import Objetos.usuarios;
+import codigo.Cargar_Info_Cod;
 import codigo.Rentas_Veh;
 import codigo.VerTabla;
 import java.util.Date;
 import javax.swing.JOptionPane;
-
 
 /**
  *
@@ -21,16 +21,31 @@ public class Interfaz_Renta extends javax.swing.JFrame {
     /**
      * Creates new form Interfaz_Renta
      */
+    String sql = "SELECT v.placa,ma.nombre_marca,mod.nombre_modelo,est.nombre_estilo,v.transmision,v.fabricacion,v.precio,v.foto FROM vehiculos AS v"
+            + " INNER JOIN marcas AS ma ON v.fk_modelo = ma.id_marca" + " INNER JOIN modelos AS mod ON v.fk_modelo = mod.id_modelo"
+            + " INNER JOIN estilos AS est ON v.fk_estilo = est.id_estilo" + " WHERE v.estado = true ";
+    String tempsql;
+    private String marca, modelo, estilo, year, precio, transmision;
+    private VerTabla v;
+
     public Interfaz_Renta(usuarios usuario) {
         initComponents();
         this.setLocationRelativeTo(null);
-        VerTabla v = new VerTabla();
-        v.visualizar_tabla(tabla);
+        v = new VerTabla();
+        v.visualizar_tabla(tabla,sql);
         carg_placas_combo();
         carg_oficinas_combo();
-       // int cedula = usuario.getCedula();
-       // String nombre_usu = usuario.getNombre();
-         
+        Cargar_Info_Cod cic = new Cargar_Info_Cod();
+        cic.Cargar_Combos(jComboBox2, jComboBox3, jComboBox4);
+        jCheckBox1.setSelected(true);
+        jCheckBox2.setSelected(true);
+        jCheckBox3.setSelected(true);
+        jCheckBox4.setSelected(true);
+        jCheckBox5.setSelected(true);
+        jCheckBox6.setSelected(true);
+        // int cedula = usuario.getCedula();
+        // String nombre_usu = usuario.getNombre();
+
     }
 
     /**
@@ -42,6 +57,7 @@ public class Interfaz_Renta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -82,9 +98,9 @@ public class Interfaz_Renta extends javax.swing.JFrame {
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jCheckBox5 = new javax.swing.JCheckBox();
-        jTextField1 = new javax.swing.JTextField();
+        txtYear = new javax.swing.JTextField();
         jCheckBox6 = new javax.swing.JCheckBox();
-        jTextField2 = new javax.swing.JTextField();
+        txtPrecio = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -163,33 +179,72 @@ public class Interfaz_Renta extends javax.swing.JFrame {
 
         jLabel15.setText("Buscar:");
 
-        jCheckBox1.setText("jCheckBox1");
+        jCheckBox1.setText("Marca");
+        jCheckBox1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCheckBox1MouseClicked(evt);
+            }
+        });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCheckBox2.setText("Modelo");
+        jCheckBox2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCheckBox2MouseClicked(evt);
+            }
+        });
 
-        jCheckBox2.setText("jCheckBox2");
+        jCheckBox3.setText("Estilo");
+        jCheckBox3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCheckBox3MouseClicked(evt);
+            }
+        });
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCheckBox4.setText("Transmision");
+        jCheckBox4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCheckBox4MouseClicked(evt);
+            }
+        });
 
-        jCheckBox3.setText("jCheckBox3");
+        buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setText("Manual");
 
-        jCheckBox4.setText("jCheckBox4");
+        buttonGroup1.add(jRadioButton2);
+        jRadioButton2.setText("Automatico");
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCheckBox5.setText("Año");
+        jCheckBox5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCheckBox5MouseClicked(evt);
+            }
+        });
 
-        jRadioButton1.setText("jRadioButton1");
+        txtYear.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtYearKeyTyped(evt);
+            }
+        });
 
-        jRadioButton2.setText("jRadioButton2");
+        jCheckBox6.setText("Precio");
+        jCheckBox6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCheckBox6MouseClicked(evt);
+            }
+        });
 
-        jCheckBox5.setText("jCheckBox5");
-
-        jTextField1.setText("jTextField1");
-
-        jCheckBox6.setText("jCheckBox6");
-
-        jTextField2.setText("jTextField2");
+        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyTyped(evt);
+            }
+        });
 
         jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Cerrar Sesion");
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -229,25 +284,27 @@ public class Interfaz_Renta extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jCheckBox2)
+                                .addComponent(jCheckBox4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jCheckBox4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jCheckBox3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBox4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jRadioButton1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jRadioButton2)
-                                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(jRadioButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRadioButton2)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jCheckBox5)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField1))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jCheckBox2)
+                                        .addGap(18, 18, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jCheckBox3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(18, 18, 18)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -317,7 +374,8 @@ public class Interfaz_Renta extends javax.swing.JFrame {
                                 .addGap(477, 477, 477)
                                 .addComponent(jCheckBox6)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(26, 26, 26)))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -350,12 +408,12 @@ public class Interfaz_Renta extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jCheckBox5)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckBox6)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -442,35 +500,147 @@ public class Interfaz_Renta extends javax.swing.JFrame {
         Date fecha_ret = jDateChooser1.getDate();
         String oficina_ret = (String) jc_ofi_ret.getSelectedItem();
         String[] ofi_ret = oficina_ret.split(",");
-        String Hora_ret = (String) jc_hora_ret.getSelectedItem() +":"+ (String) jc_min_ret.getSelectedItem() + ":00";
+        String Hora_ret = (String) jc_hora_ret.getSelectedItem() + ":" + (String) jc_min_ret.getSelectedItem() + ":00";
         Date fecha_dev = jDateChooser2.getDate();
         String oficina_dev = (String) jc_ofi_dev.getSelectedItem();
         String[] ofi_dev = oficina_dev.split(",");
-        String Hora_dev = (String) jc_hora_dev.getSelectedItem() +":"+ (String) jc_min_dev.getSelectedItem() + ":00";
+        String Hora_dev = (String) jc_hora_dev.getSelectedItem() + ":" + (String) jc_min_dev.getSelectedItem() + ":00";
         Rentas_Veh inf = new Rentas_Veh();
         int precio = inf.precio_vehic(placa);
         int adicionales = 0;
-        if(chkps.isSelected()){
+        if (chkps.isSelected()) {
             adicionales = adicionales + 9;
         }
-        if(chkboo.isSelected()){
+        if (chkboo.isSelected()) {
             adicionales = adicionales + 11;
         }
-        if(chkbb.isSelected()){
+        if (chkbb.isSelected()) {
             adicionales = adicionales + 3;
         }
         int precio_total_dia = precio + adicionales;
-        int dias=(int) ((fecha_dev.getTime()-fecha_ret.getTime())/86400000);
+        int dias = (int) ((fecha_dev.getTime() - fecha_ret.getTime()) / 86400000);
         int precio_final = precio_total_dia * dias;
         int cedula1 = 1;
         String nombre1 = "qwe";
-        boolean guard = inf.guardar_rentas(placa,cedula1 ,nombre1, Integer.parseInt(ofi_dev[0]),Integer.parseInt(ofi_ret[0]),fecha_dev, fecha_ret,precio_final , Hora_dev, Hora_ret);
-        if(guard){
+        boolean guard = inf.guardar_rentas(placa, cedula1, nombre1, Integer.parseInt(ofi_dev[0]), Integer.parseInt(ofi_ret[0]), fecha_dev, fecha_ret, precio_final, Hora_dev, Hora_ret);
+        if (guard) {
             JOptionPane.showMessageDialog(null, "Gracias por el alquiler");
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "No se pudo realizar el alquiler");
         }
     }//GEN-LAST:event_btnAlqActionPerformed
+
+    private void jCheckBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox1MouseClicked
+        if (evt.getClickCount() == 1) {
+            if (jComboBox2.isEnabled()) {
+                jComboBox2.setEnabled(false);
+            } else {
+                jComboBox2.setEnabled(true);
+            }
+        }
+    }//GEN-LAST:event_jCheckBox1MouseClicked
+
+    private void jCheckBox2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox2MouseClicked
+        if (evt.getClickCount() == 1) {
+            if (jComboBox3.isEnabled()) {
+                jComboBox3.setEnabled(false);
+            } else {
+                jComboBox3.setEnabled(true);
+            }
+        }
+    }//GEN-LAST:event_jCheckBox2MouseClicked
+
+    private void jCheckBox3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox3MouseClicked
+        if (evt.getClickCount() == 1) {
+            if (jComboBox4.isEnabled()) {
+                jComboBox4.setEnabled(false);
+            } else {
+                jComboBox4.setEnabled(true);
+            }
+        }
+    }//GEN-LAST:event_jCheckBox3MouseClicked
+
+    private void jCheckBox4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox4MouseClicked
+        if (evt.getClickCount() == 1) {
+            if (jRadioButton1.isEnabled() || jRadioButton2.isEnabled()) {
+                jRadioButton1.setEnabled(false);
+                jRadioButton2.setEnabled(false);
+            } else {
+                jRadioButton1.setEnabled(true);
+                jRadioButton2.setEnabled(true);
+            }
+        }
+    }//GEN-LAST:event_jCheckBox4MouseClicked
+
+    private void jCheckBox5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox5MouseClicked
+        if (evt.getClickCount() == 1) {
+            if (txtYear.isEnabled()) {
+                txtYear.setEnabled(false);
+            } else {
+                txtYear.setEnabled(true);
+            }
+        }
+    }//GEN-LAST:event_jCheckBox5MouseClicked
+
+    private void jCheckBox6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox6MouseClicked
+        if (evt.getClickCount() == 1) {
+            if (txtPrecio.isEnabled()) {
+                txtPrecio.setEnabled(false);
+            } else {
+                txtPrecio.setEnabled(true);
+            }
+        }
+    }//GEN-LAST:event_jCheckBox6MouseClicked
+
+    private void txtYearKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtYearKeyTyped
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9' && c != '\b') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtYearKeyTyped
+
+    private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9' && c != '\b') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPrecioKeyTyped
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        marca = " AND ma.nombre_marca = '" + jComboBox2.getSelectedItem().toString() + "' ";
+        modelo = " AND mod.nombre_modelo = '" + jComboBox3.getSelectedItem().toString() + "' ";
+        estilo = " AND est.nombre_estilo = '" + jComboBox4.getSelectedItem().toString() + "' ";
+        if (jRadioButton1.isSelected()) {
+            transmision = " AND v.transmision = " + false + " ";
+        } else {
+            transmision = " AND v.transmision = " + true + " ";
+        }
+        if(!txtYear.getText().equals("")){
+            year = " AND v.fabricacion = " + Integer.parseInt(txtYear.getText()) + " ";
+        }if(!txtPrecio.getText().equals("")){
+            precio = " AND v.precio = " + Integer.parseInt(txtPrecio.getText()) + " ";
+        }
+        tempsql = sql;
+        if (jCheckBox1.isSelected()) {
+            tempsql += marca;
+        }
+        if (jCheckBox2.isSelected()) {
+            tempsql += modelo;
+        }
+        if (jCheckBox3.isSelected()) {
+            tempsql += estilo;
+        }
+        if (jCheckBox4.isSelected()) {
+            tempsql += transmision;
+        }
+        if (jCheckBox5.isSelected()) {
+            tempsql += year;
+        }
+        if (jCheckBox6.isSelected()) {
+            tempsql += precio;
+        }
+        v.visualizar_tabla(tabla, tempsql+" ORDER BY v.placa;");
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -482,6 +652,7 @@ public class Interfaz_Renta extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlq;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox chkbb;
     private javax.swing.JCheckBox chkboo;
     private javax.swing.JCheckBox chkps;
@@ -519,8 +690,6 @@ public class Interfaz_Renta extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JComboBox<String> jc_hora_dev;
     private javax.swing.JComboBox<String> jc_hora_ret;
     private javax.swing.JComboBox<String> jc_min_dev;
@@ -528,6 +697,8 @@ public class Interfaz_Renta extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jc_ofi_dev;
     private javax.swing.JComboBox<String> jc_ofi_ret;
     private javax.swing.JTable tabla;
+    private javax.swing.JTextField txtPrecio;
+    private javax.swing.JTextField txtYear;
     // End of variables declaration//GEN-END:variables
 
     public void carg_placas_combo() {

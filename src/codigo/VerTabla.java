@@ -12,12 +12,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class VerTabla {
-    String order_by = " ORDER BY v.placa;";
-    public void visualizar_tabla(JTable tabla) {
+    public void visualizar_tabla(JTable tabla,String sql) {
         Renta_Vehiculos rv = new Renta_Vehiculos();
-        String sql = "SELECT v.placa,ma.nombre_marca,mod.nombre_modelo,est.nombre_estilo,v.transmision,year,v.precio,v.foto FROM vehiculos AS v"
-                   + " INNER JOIN marcas AS ma ON v.fk_modelo = ma.id_marca" +" INNER JOIN modelos AS mod ON v.fk_modelo = mod.id_modelo" 
-                    +" INNER JOIN estilos AS est ON v.fk_estilo = est.id_estilo"+" WHERE v.estado = true ";
         //  Connection con = conn.conectar();
         ResultSet rs = rv.visualizar(sql);
         //Image img = null;   
