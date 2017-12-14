@@ -159,18 +159,22 @@ public class Login extends javax.swing.JFrame {
         Registro_Usuario ru = new Registro_Usuario();
         String clave = new String(jpsContra.getPassword());
         usuarios usuario = ru.Verificar_Usuario(txtUsuario.getText());
-        if(usuario != null){
+        if (usuario != null) {
             boolean tipo_usuario = ru.Tipo_Usuario(usuario, clave);
-            if(tipo_usuario){
+            if (usuario.getTipo() == true && tipo_usuario == true) {
                 Vista_Admin va = new Vista_Admin();
                 va.setVisible(true);
                 this.dispose();
-            }else{
+            } else if (usuario.getTipo() == false && tipo_usuario == true) {
                 Interfaz_Renta ir = new Interfaz_Renta(usuario);
                 ir.setVisible(true);
                 this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta");
+                txtUsuario.setText("");
+                jpsContra.setText("");
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta");
             txtUsuario.setText("");
             jpsContra.setText("");

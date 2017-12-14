@@ -25,7 +25,6 @@ public class Registro_Usuario {
     }
 
     public usuarios Cargar_Usuario(int cedula) {
-
         base_datos_Usuarios ae_db = new base_datos_Usuarios();
         usuarios informacion_usuario = ae_db.Buscar_Usuario_DB(cedula);
         return informacion_usuario;
@@ -39,7 +38,7 @@ public class Registro_Usuario {
     public boolean Tipo_Usuario(usuarios usuario,String clave){
         MD5 md5 = new MD5();
         boolean tipo;
-        tipo = (md5.Clave_MD5(clave).equals(usuario.getContraseña())) && usuario.getTipo() == true;
+        tipo = (md5.Clave_MD5(clave).equals(usuario.getContraseña()));
         return tipo;
     }
 }
