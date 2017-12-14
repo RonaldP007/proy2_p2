@@ -16,38 +16,42 @@ import java.io.FileInputStream;
  */
 public class CRUD_Codigo_Agregar {
 
+    //This method send the style for another method and return a boolean if it is saved
     public boolean Agregar_Estilo_Cod(String estilo) {
         CRUD_DB_Agregar crud_db = new CRUD_DB_Agregar();
         boolean agregado = crud_db.Agregar_Estilo_DB(estilo);
         return agregado;
     }
 
+    //This method send the brand for another method and return a boolean if it is saved
     public boolean Agregar_Marca_Cod(String marca) {
         CRUD_DB_Agregar crud_db = new CRUD_DB_Agregar();
         boolean agregado = crud_db.Agregar_Marca_DB(marca);
         return agregado;
     }
 
+    //This method send the model for another method and return a boolean if it is saved
     public boolean Agregar_Modelo_Cod(String modelo) {
         CRUD_DB_Agregar crud_db = new CRUD_DB_Agregar();
         boolean agregado = crud_db.Agregar_Modelo_DB(modelo);
         return agregado;
     }
 
+    //This method send the office for another method and return a boolean if it is saved
     public boolean Agregar_Oficina_Cod(String oficina) {
         CRUD_DB_Agregar crud_db = new CRUD_DB_Agregar();
         boolean agregado = crud_db.Agregar_Oficina_DB(oficina);
         return agregado;
     }
 
+    //This method send the car for another method and return a boolean if it is saved
     public boolean Agregar_Vehiculo_Cod(String placa, String marca, String modelo,
             String estilo, boolean transmision, String fabricacion, String precio_dia,
             int longitudBytes, FileInputStream fis, boolean estado) {
         Cargar_Info_DB ci_db = new Cargar_Info_DB();
-        int  id_marca = ci_db.Info_Id_marca_modelo_estilo("marca", marca);
-        int  id_modelo = ci_db.Info_Id_marca_modelo_estilo("modelo", modelo);
-        int  id_estilo = ci_db.Info_Id_marca_modelo_estilo("estilo", estilo);
-
+        int id_marca = ci_db.Info_Id_marca_modelo_estilo("marca", marca);
+        int id_modelo = ci_db.Info_Id_marca_modelo_estilo("modelo", modelo);
+        int id_estilo = ci_db.Info_Id_marca_modelo_estilo("estilo", estilo);
         Vehiculo vehiculo = new Vehiculo(placa, id_marca, id_modelo, id_estilo, transmision,
                 Integer.parseInt(fabricacion), Integer.parseInt(precio_dia),
                 longitudBytes, fis, null, estado);

@@ -24,7 +24,7 @@ public class CRUD_DB_Agregar {
     static String jdbc = "jdbc:postgresql://localhost:5432/programacion";
    // static String pass = "Admin";
     static String pass = "RPG007rpg";
-    
+    //This method add the style for the cars in the database
     public boolean Agregar_Estilo_DB(String estilo) {
         boolean se_guardo;
         try {
@@ -40,7 +40,7 @@ public class CRUD_DB_Agregar {
         }
         return se_guardo;
     }
-
+    //This method add the brand for the cars in the database
     public boolean Agregar_Marca_DB(String marca) {
         boolean se_guardo;
         try {
@@ -56,7 +56,7 @@ public class CRUD_DB_Agregar {
         }
         return se_guardo;
     }
-
+    //This method add the model for the cars in the database
     public boolean Agregar_Modelo_DB(String modelo) {
         boolean se_guardo;
         try {
@@ -72,7 +72,7 @@ public class CRUD_DB_Agregar {
         }
         return se_guardo;
     }
-
+    //This method add the office for the rents in the database
     public boolean Agregar_Oficina_DB(String oficina) {
         boolean se_guardo;
         try {
@@ -88,7 +88,7 @@ public class CRUD_DB_Agregar {
         }
         return se_guardo;
     }
-
+    //This method add the cars in the database
     public boolean Agregar_Vehiculo_DB(Vehiculo vehiculo) {
         boolean se_guardo;
         try {

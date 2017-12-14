@@ -362,48 +362,6 @@ public class Modificar_Vehiculo extends javax.swing.JDialog {
         longitudBytes = (int) info_foto[1];
     }//GEN-LAST:event_btnFotoActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Modificar_Vehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Modificar_Vehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Modificar_Vehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Modificar_Vehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                Modificar_Vehiculo dialog = new Modificar_Vehiculo(new javax.swing.JDialog(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnFoto;
@@ -431,7 +389,7 @@ public class Modificar_Vehiculo extends javax.swing.JDialog {
     private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtYear;
     // End of variables declaration//GEN-END:variables
-
+    //This method load the information in the combobox 
     private void Cargar_Combos() {
         Cargar_Info_Cod cic = new Cargar_Info_Cod();
         cic.Cargar_Combos(jcbMarcas, jcbModelos, jcbEstilos);
@@ -439,7 +397,7 @@ public class Modificar_Vehiculo extends javax.swing.JDialog {
         jcbEstilos.repaint();
         jcbModelos.repaint();
     }
-
+    //This method load information of the car 
     private void Cargar_Vehiculo() {
         Cargar_Info_Cod cic = new Cargar_Info_Cod();
         

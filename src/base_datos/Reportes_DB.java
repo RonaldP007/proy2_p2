@@ -29,7 +29,7 @@ public class Reportes_DB {
     //Conexion Ronald
     static String jdbc = "jdbc:postgresql://localhost:5432/programacion";
     static String pass = "Admin";
-
+    //This method return a arraylist with the information to the report #1
     public ArrayList<Object[]> rep1(Date inicio, Date fin) {
         java.sql.Date Date1 = new java.sql.Date(inicio.getTime());
         java.sql.Date Date2 = new java.sql.Date(fin.getTime());
@@ -56,7 +56,7 @@ public class Reportes_DB {
         }
         return info;
     }
-
+    //This method return a arraylist with the information to the report #2
     public ArrayList<Object[]> rep2(boolean estado) {
         ArrayList<Object[]> info = new ArrayList<>();
         try {
@@ -81,7 +81,7 @@ public class Reportes_DB {
         }
         return info;
     }
-
+    //This method return a arraylist with the information to the report #3
     public ArrayList<Object[]> rep3() {
         ArrayList<Object[]> info = new ArrayList<>();
         try {

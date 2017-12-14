@@ -29,7 +29,7 @@ public class Cargar_Info_DB {
     //Conexion Ronald
     static String jdbc = "jdbc:postgresql://localhost:5432/programacion";
     static String pass = "Admin";
-
+    //This method return a arraylist kind String with models, brands, or styles
     public ArrayList<String> Info_marca_modelo_estilo(String nombre_columna) {
         ArrayList<String> info = new ArrayList<>();
         try {
@@ -46,7 +46,7 @@ public class Cargar_Info_DB {
         }
         return info;
     }
-
+    //This method return a integer of the models, brands, or styles
     public int Info_Id_marca_modelo_estilo(String nombre_columna, String nombre) {
         int id = 0;
         try {
@@ -64,10 +64,7 @@ public class Cargar_Info_DB {
         return id;
     }
 
-    /*
-    SELECT ve.placa,ma.nombre_marca,mo.nombre_modelo,es.nombre_estilo,ve.transmision,ve.fabricacion,ve.precio,ve.foto,ve.estado FROM vehiculos AS ve INNER JOIN marcas AS ma 
-    ON ma.id_marca = ve.fk_marca INNER JOIN modelos AS mo ON mo.id_modelo = ve.fk_modelo INNER JOIN estilos AS es ON es.id_estilo = ve.fk_estilo WHERE placa = '?';
-     */
+    //this method return the object car with the license plate
     public Vehiculo Vehiculo(String placa) {
         Vehiculo vehiculo;
         try {
@@ -88,7 +85,7 @@ public class Cargar_Info_DB {
         }
         return vehiculo;
     }
-
+    //This method return the String of the models,brands or styles
     public String Info_Nombre_marca_modelo_estilo(int id, String nombre) {
         String nombre_tipo;
         try {
@@ -105,7 +102,7 @@ public class Cargar_Info_DB {
         }
         return nombre_tipo;
     }
-
+    //This method return a arraylist with the name and identification of the models, brands or styles
     public ArrayList<String[]> Info_CRUDS(String nombre_columna, String nombre) {
         ArrayList<String[]> info = new ArrayList<>();
         try {

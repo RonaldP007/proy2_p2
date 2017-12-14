@@ -21,7 +21,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author Extreme pc
  */
 public class Cargar_Foto {
-
+    //This method create a new window for search a image set in a label and return the image information
     public Object[] Cargar_foto(JLabel lblfoto) {
         lblfoto.setIcon(null);
         Object[] info_foto = null;

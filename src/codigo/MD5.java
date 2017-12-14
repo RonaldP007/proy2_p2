@@ -13,6 +13,7 @@ import java.security.*;
  * @author Extreme pc
  */
 public class MD5 {
+    //This method encrypt the password and return it
     public String Clave_MD5(String clave) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");

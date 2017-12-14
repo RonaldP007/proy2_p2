@@ -23,7 +23,7 @@ public class CRUD_DB_Modificar {
     //Conexion Ronald
     static String jdbc = "jdbc:postgresql://localhost:5432/programacion";
     static String pass = "Admin";
-
+    //This method modify the brands in the database
     public boolean Modificar_Marca_DB(int cod_marca, String nuevo_nombre) {
         boolean modificado;
         try {
@@ -40,7 +40,7 @@ public class CRUD_DB_Modificar {
         }
         return modificado;
     }
-
+    //This method modify the models in the database
     public boolean Modificar_Modelo_DB(int cod_modelo, String nuevo_nombre) {
         boolean modificado;
         try {
@@ -57,7 +57,7 @@ public class CRUD_DB_Modificar {
         }
         return modificado;
     }
-
+    //This method modify the offices in the database
     public boolean Modificar_Oficina_DB(int cod_oficina, String nuevo_nombre) {
         boolean modificado;
         try {
@@ -74,7 +74,7 @@ public class CRUD_DB_Modificar {
         }
         return modificado;
     }
-
+    //This method modify the styles in the database
     public boolean Modificar_Estilo_DB(int cod_estilo, String nuevo_nombre) {
         boolean modificado;
         try {
@@ -91,7 +91,7 @@ public class CRUD_DB_Modificar {
         }
         return modificado;
     }
-
+    //This method modify the cars in the database if change the image
     public boolean Modificar_Vehiculo_Foto(Vehiculo vehiculo) {
         boolean modificado;
         try {
@@ -114,7 +114,7 @@ public class CRUD_DB_Modificar {
         }
         return modificado;
     }
-
+    //This method modify the cars in the database if not change the image
     public boolean Modificar_Vehiculo_Sin_Foto(Vehiculo vehiculo) {
         boolean modificado;
         try {

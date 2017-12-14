@@ -89,9 +89,7 @@ public class Rep2 extends javax.swing.JDialog {
         else{
             estado = true;
         }
-        rc.Rep_2(estado);
-  
-        
+        rc.Rep_2(estado);  
     }//GEN-LAST:event_jButton1ActionPerformed
 
   

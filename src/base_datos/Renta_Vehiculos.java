@@ -27,7 +27,7 @@ public class Renta_Vehiculos {
     static String query;
     static String jdbc = "jdbc:postgresql://localhost:5432/programacion";
     static String pass = "RPG007rpg";
-
+    //This methods return the cars information of the database
     public ResultSet visualizar(String sql) {
 
         try {
@@ -57,7 +57,7 @@ public class Renta_Vehiculos {
         }
         return info;
     }
-
+    //This method return a arraylist of the offices
     public ArrayList<String> Info_Oficinas() {
         ArrayList<String> info = new ArrayList<>();
         try {
@@ -76,7 +76,7 @@ public class Renta_Vehiculos {
         }
         return info;
     }
-    
+    //This method return a arraylist prices of the car
      public ArrayList<Integer> precio_vehiculo(String placa) {
         ArrayList<Integer> precio = new ArrayList<>();
         try {
@@ -96,6 +96,7 @@ public class Renta_Vehiculos {
         }
         return precio;
     }
+     //This method add the rent in the database and return a boolean if it was possible to rent
      public boolean Agregar_Renta_Veh(String placa,int cedula,String nombre,int oficina_dev,int oficina_ret,Date fecha_dev,Date fecha_ret,int precio,String hora_dev,String hora_ret){
         boolean se_guardo;
         java.sql.Date Date1 = new java.sql.Date(fecha_ret.getTime());

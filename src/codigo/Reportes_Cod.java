@@ -28,7 +28,7 @@ public class Reportes_Cod {
     private static final Font subcategoryFont = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);
     private static final Font blueFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, BaseColor.RED);
     private static final Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
-
+    //This method create or modify the pdf and set the information of the report #1
     public void Rep_1(Date inicio, Date fin) {
         Reportes_DB rep = new Reportes_DB();
         ArrayList<Object[]> info = rep.rep1(inicio, fin);
@@ -79,7 +79,7 @@ public class Reportes_Cod {
             JOptionPane.showMessageDialog(null, "No se pudo abrir el documento. " + e);
         }
     }
-
+    //This method create or modify the pdf and write the information of the report #2
     public void Rep_2(boolean estado) {
         Reportes_DB rep = new Reportes_DB();
         String est;
@@ -137,6 +137,7 @@ public class Reportes_Cod {
             JOptionPane.showMessageDialog(null, "No se pudo abrir el documento. " + e);
         }
     }
+    //This method create or modify the pdf and write the information of the report #3
     public void Rep_3() {
         Reportes_DB rep = new Reportes_DB();
        

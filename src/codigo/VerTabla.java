@@ -12,6 +12,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class VerTabla {
+    //This method set all information and image of the cars in a table
     public void visualizar_tabla(JTable tabla,String sql) {
         Renta_Vehiculos rv = new Renta_Vehiculos();
         //  Connection con = conn.conectar();

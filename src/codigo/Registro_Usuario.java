@@ -15,7 +15,7 @@ import java.io.FileInputStream;
  */
 public class Registro_Usuario {
 
-  
+    //This method return a boolean if the user is saved and send the information for other method
     public boolean Guardar_Usuario(int cedula, String nombre, int telefono, String direccion, FileInputStream fis, int longitudBytes, String contraseña) {
         boolean guardado;
         MD5 md5 = new MD5();
@@ -23,19 +23,19 @@ public class Registro_Usuario {
         guardado = ae_db.Guardar_Usuario_db(cedula, nombre, telefono, direccion, fis, longitudBytes, md5.Clave_MD5(contraseña));
         return guardado;
     }
-
+    //This method send a integer of a user in the database and return the object usuarios
     public usuarios Cargar_Usuario(int cedula) {
         base_datos_Usuarios ae_db = new base_datos_Usuarios();
         usuarios informacion_usuario = ae_db.Buscar_Usuario_DB(cedula);
         return informacion_usuario;
     }
-    
+    //This method send a integer of a user in the database and return the object usuarios 
     public usuarios Verificar_Usuario(String cedula){
         usuarios usuario = Cargar_Usuario(Integer.parseInt(cedula));
         return usuario;
     }
-    
-    public boolean Tipo_Usuario(usuarios usuario,String clave){
+    //This method check the password if it is the same
+    public boolean Verificar_Clave(usuarios usuario,String clave){
         MD5 md5 = new MD5();
         boolean tipo;
         tipo = (md5.Clave_MD5(clave).equals(usuario.getContraseña()));

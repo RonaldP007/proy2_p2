@@ -30,7 +30,7 @@ public class base_datos_Usuarios {
     // static String pass = "Admin";
     //pass Ronald
     static String pass = "RPG007rpg";
-
+    //This method save the user in the database
     public boolean Guardar_Usuario_db(int cedula, String nombre, int telefono, String direccion, FileInputStream fis, int longitudBytes, String contraseña) {
         boolean se_guardo = false;
         try {
@@ -52,7 +52,7 @@ public class base_datos_Usuarios {
         }
         return se_guardo;
     }
-
+    //This method search the user in the database
     public usuarios Buscar_Usuario_DB(int cedula) {
         usuarios usuario = null;
         try {

@@ -158,17 +158,16 @@ public class Login extends javax.swing.JFrame {
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
         Registro_Usuario ru = new Registro_Usuario();
-        String clave = new String();
-
+        String clave = new String(jpsContra.getPassword());
         if (!txtUsuario.getText().equals("") && !jpsContra.getPassword().equals("")) {
             usuarios usuario = ru.Verificar_Usuario(txtUsuario.getText());
             if (usuario != null) {
-                boolean tipo_usuario = ru.Tipo_Usuario(usuario, clave);
-                if (usuario.getTipo() == true && tipo_usuario == true) {
+                boolean clave_correcta = ru.Verificar_Clave(usuario, clave);
+                if (usuario.getTipo() == true && clave_correcta == true) {
                     Vista_Admin va = new Vista_Admin();
                     va.setVisible(true);
                     this.dispose();
-                } else if (usuario.getTipo() == false && tipo_usuario == true) {
+                } else if (usuario.getTipo() == false && clave_correcta == true) {
                     Interfaz_Renta ir = new Interfaz_Renta(usuario);
                     ir.setVisible(true);
                     this.dispose();

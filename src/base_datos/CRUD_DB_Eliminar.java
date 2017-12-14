@@ -21,7 +21,7 @@ public class CRUD_DB_Eliminar {
     //Conexion Ronald
     static String jdbc = "jdbc:postgresql://localhost:5432/programacion";
     static String pass = "Admin";
-    
+    //This method delete the styles in the database
     public boolean Eliminar_Estilo_DB(int estilo) {
         boolean eliminado;
         try {
@@ -37,7 +37,7 @@ public class CRUD_DB_Eliminar {
         }
         return eliminado;
     }
-
+    //This method delete the brands in the database
     public boolean Eliminar_Marca_DB(int marca) {
         boolean eliminado;
         try {
@@ -53,7 +53,7 @@ public class CRUD_DB_Eliminar {
         }
         return eliminado;
     }
-
+    //This method delete the models in the database
     public boolean Eliminar_Modelo_DB(int modelo) {
         boolean eliminado;
         try {
@@ -69,7 +69,7 @@ public class CRUD_DB_Eliminar {
         }
         return eliminado;
     }
-
+    //This method delete the offices in the database
     public boolean Eliminar_Oficina_DB(int oficina) {
         boolean eliminado;
         try {
@@ -85,7 +85,7 @@ public class CRUD_DB_Eliminar {
         }
         return eliminado;
     }
-
+    //This method delete the cars in the database
     public boolean Eliminar_Vehiculo_DB(String placa) {
         boolean eliminado;
         try {
