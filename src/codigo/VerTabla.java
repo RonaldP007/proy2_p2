@@ -68,8 +68,7 @@ public class VerTabla {
             tabla.setModel(dt);
             tabla.setRowHeight(100);
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-            ex.printStackTrace();
+           
         }
     }
 

@@ -36,7 +36,7 @@ public class Renta_Vehiculos {
             PreparedStatement ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
         } catch (SQLException ex) {
-            ex.printStackTrace();
+          
         }
         return rs;
     }

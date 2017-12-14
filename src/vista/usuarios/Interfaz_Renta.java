@@ -208,6 +208,7 @@ public class Interfaz_Renta extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setSelected(true);
         jRadioButton1.setText("Manual");
 
         buttonGroup1.add(jRadioButton2);
@@ -288,8 +289,7 @@ public class Interfaz_Renta extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jRadioButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButton2)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(jRadioButton2))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jCheckBox5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -374,9 +374,8 @@ public class Interfaz_Renta extends javax.swing.JFrame {
                                 .addGap(477, 477, 477)
                                 .addComponent(jCheckBox6)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(26, 26, 26)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                                .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -617,8 +616,14 @@ public class Interfaz_Renta extends javax.swing.JFrame {
         }
         if(!txtYear.getText().equals("")){
             year = " AND v.fabricacion = " + Integer.parseInt(txtYear.getText()) + " ";
-        }if(!txtPrecio.getText().equals("")){
+        }else{
+            year = " AND v.fabricacion = " + 2017 + " ";
+        }
+        if(!txtPrecio.getText().equals("")){
             precio = " AND v.precio = " + Integer.parseInt(txtPrecio.getText()) + " ";
+        }
+        else{
+            year = " AND v.precio = " + 2015 + " ";
         }
         tempsql = sql;
         if (jCheckBox1.isSelected()) {
