@@ -28,7 +28,7 @@ public class CRUD_DB_Modificar {
         boolean modificado;
         try {
             conn = DriverManager.getConnection(jdbc, "postgres", pass);
-            query = "UPDATE marcas(id_marca,nombre_marca) SET nombre_marca = ? WHERE id_marca = ?";
+            query = "UPDATE marcas SET nombre_marca = ? WHERE id_marca = ?";
             pst = conn.prepareStatement(query);
             pst.setString(1, nuevo_nombre);
             pst.setInt(2, cod_marca);
@@ -45,7 +45,7 @@ public class CRUD_DB_Modificar {
         boolean modificado;
         try {
             conn = DriverManager.getConnection(jdbc, "postgres", pass);
-            query = "UPDATE modelos(id_modelo,nombre_modelo) SET nombre_modelo = ? WHERE id_modelo = ?";
+            query = "UPDATE modelos SET nombre_modelo = ? WHERE id_modelo = ?";
             pst = conn.prepareStatement(query);
             pst.setString(1, nuevo_nombre);
             pst.setInt(2, cod_modelo);
@@ -62,7 +62,7 @@ public class CRUD_DB_Modificar {
         boolean modificado;
         try {
             conn = DriverManager.getConnection(jdbc, "postgres", pass);
-            query = "UPDATE oficinas(id_oficina,nombre_oficina) SET nombre_oficina = ? WHERE id_oficina = ?";
+            query = "UPDATE oficinas SET nombre_oficina = ? WHERE id_oficina = ?";
             pst = conn.prepareStatement(query);
             pst.setString(1, nuevo_nombre);
             pst.setInt(2, cod_oficina);
@@ -79,7 +79,7 @@ public class CRUD_DB_Modificar {
         boolean modificado;
         try {
             conn = DriverManager.getConnection(jdbc, "postgres", pass);
-            query = "UPDATE estilos(id_estilo,nombre_estilo) SET nombre_estilo = ? WHERE id_estilo = ?";
+            query = "UPDATE estilos SET nombre_estilo = ? WHERE id_estilo = ?";
             pst = conn.prepareStatement(query);
             pst.setString(1, nuevo_nombre);
             pst.setInt(2, cod_estilo);
