@@ -86,7 +86,7 @@ public class Reportes_DB {
         ArrayList<Object[]> info = new ArrayList<>();
         try {
             conn = DriverManager.getConnection(jdbc, "postgres", pass);
-            query = "SELECT u.cedula,u.nombre,u.telefono,u.direccion,u.foto_usuario,v.placa,v.foto,ma.nombre_marca,mo.nombre_modelo,es.nombre_estilo,v.transmision,v.year,v.precio \n"
+            query = "SELECT u.cedula,u.nombre,u.telefono,u.direccion,u.foto_usuario,v.placa,v.foto,ma.nombre_marca,mo.nombre_modelo,es.nombre_estilo,v.transmision,v.fabricacion,v.precio \n"
                     + "FROM alquiler_vehiculo AS al \n"
                     + "INNER JOIN usuarios AS u ON u.cedula = al.fk_cedula_usu\n"
                     + "INNER JOIN vehiculos AS v ON v.placa = al.fk_placa\n"
